@@ -1,4 +1,17 @@
+labs_ubold:
+    resource: "@LabsUboldBundle/Controller/"
+    type:     annotation
+    prefix:   /tpl
+
+labs_back:
+    resource: "@LabsBackBundle/Controller/"
+    type:     annotation
+    prefix:   /codepit
+
 labs_front:
     resource: "@LabsFrontBundle/Controller/"
     type:     annotation
     prefix:   /
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

@@ -1,0 +1,4 @@
+services:
+#    labs_back.example:
+#        class: Labs\BackBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

@@ -1,0 +1,5 @@
+{% extends "LabsBackBundle::layout_login.html.twig" %}
+
+{% block fos_user_content %}
+    {{ include('LabsBackBundle:Security:login_content.html.twig') }}
+{% endblock fos_user_content %}
