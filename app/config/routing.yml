@@ -1,0 +1,4 @@
+labs_front:
+    resource: "@LabsFrontBundle/Controller/"
+    type:     annotation
+    prefix:   /
