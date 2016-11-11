@@ -1,0 +1,77 @@
+{% extends 'LabsUboldBundle::loyout_ubold.html.twig' %}
+{% block title %}{{ 'Partner - Page | AGR' }}{% endblock %}
+{% block body %}
+    <div class="content">
+        <div class="container">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    {% if app.session.flashBag.has('success') %}
+                        <div class="alert alert-success" role="alert">
+                            {% for msg in app.session.flashBag.get('success') %}
+                                <strong> Succès </strong>{{ msg }}.
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <h4 class="page-title">{{ 'Creation partenaire' }}</h4>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="{{ path('homepage') }}">{{ 'AGR' }}</a>
+                        </li>
+                        <li class="active">
+                            {{ 'Page partenaire' }}
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <!-- end Page Title -->
+            <!-- page content -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card-box">
+                        <h4 class="m-t-0 header-title"><b>{{ 'Formulaire de creation de la page About' }}</b></h4>
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2">
+                                {{ form_start(form, {'role': 'form', 'action': path('partner_create'), 'attr': {'class': 'form-horizontal'}}) }}
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">{{ 'Nom' }}</label>
+                                    <div class="col-md-10">
+                                        {{ form_row(form.name) }}
+                                        {{ form_errors(form.name) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">{{ 'Lien' }}</label>
+                                    <div class="col-md-10">
+                                        {{ form_row(form.url) }}
+                                        {{ form_errors(form.url) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">{{ 'Images de la page' }}</label>
+                                    <div class="col-md-10">
+                                        {{ form_row(form.imageFile) }}
+                                        {{ form_errors(form.imageFile) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-8 col-md-offset-2">
+                                        <button type="submit" class="btn btn-primary">{{ 'Créer partenaire' }}</button>
+                                    </div>
+                                </div>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end page content -->
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}{% endblock %}

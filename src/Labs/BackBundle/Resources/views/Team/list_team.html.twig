@@ -1,5 +1,5 @@
 {% extends 'LabsUboldBundle::loyout_ubold.html.twig' %}
-{% block title %}{{ 'About - Page | AGR' }}{% endblock %}
+{% block title %}{{ 'team - Page | AGR' }}{% endblock %}
 {% block body %}
     <div class="content">
         <div class="container">
@@ -20,7 +20,7 @@
                             <a href="{{ path('homepage') }}">{{ 'AGR' }}</a>
                         </li>
                         <li class="active">
-                            {{ 'Page About' }}
+                            {{ 'Page Banner' }}
                         </li>
                     </ol>
                 </div>
@@ -30,10 +30,10 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card-box">
-                        <h4 class="m-t-0 header-title"><b>{{ 'Page About' }}</b></h4>
+                        <h4 class="m-t-0 header-title"><b>{{ 'Page Bannier' }}</b></h4>
                         <p class="text-muted font-13">
-                            <span class="pull-left">Liste du contenu des pages</span>
-                            <span class="pull-right"> <a href="{{ path('about_add') }}" class="btn btn-primary btn-block">{{ 'Créer page About' }}</a> </span>
+                            <span class="pull-left">Liste de la team</span>
+                            <span class="pull-right"> <a href="{{ path('team_create') }}" class="btn btn-primary btn-block">{{ 'Créer team' }}</a> </span>
                         </p>
                         <div class="clearfix"></div>
 
@@ -44,8 +44,8 @@
                                data-pagination="true" data-show-pagination-switch="true" class="table-bordered " class="padding-top-sm">
                             <thead>
                             <tr>
-                                <th data-field="tite" data-switchable="false">{{ 'Titre' }}</th>
-                                <th data-field="subtite" data-switchable="false">{{ 'Sous titre' }}</th>
+                                <th data-field="tite" data-switchable="false">{{ 'Nom' }}</th>
+                                <th data-field="subtite" data-switchable="false">{{ 'Poste' }}</th>
                                 <th data-field="name">{{ 'date' }}</th>
                                 <th data-field="user-status" class="text-center">Edit</th>
                                 <th data-field="user-del" class="text-center">Del</th>
@@ -53,15 +53,15 @@
                             </thead>
 
                             <tbody>
-                            {% for about in abouts %}
+                            {% for team in teams %}
                                 <tr>
-                                    <td>{{ about.title }}</td>
-                                    <td>{{ about.subtitle }}</td>
-                                    <td>{{ about.created|date('Y-m-d') }}</td>
-                                    <td><a class="btn btn-block btn-primary" href="{{ path('about_edit', {'id' : about.id }) }}">{{ "Modifier" }}</a></td>
-                                    <td><a class="btn btn-block btn-danger" href="{{ path('about_delete', {'id' : about.id }) }}">{{ "Delete" }}</a></td>
+                                    <td>{{ team.name }}</td>
+                                    <td>{{ team.poste }}</td>
+                                    <td>{{ team.created|date('Y-m-d') }}</td>
+                                    <td><a class="btn btn-block btn-primary" href="{{ path('team_edit', {'id' : team.id }) }}">{{ "Modifier" }}</a></td>
+                                    <td><a class="btn btn-block btn-danger" href="{{ path('team_delete', {'id' : team.id }) }}">{{ "Delete" }}</a></td>
                                 </tr>
-                             {% endfor %}
+                            {% endfor %}
                             </tbody>
                         </table>
                     </div>

@@ -63,9 +63,26 @@ class Banner
     /**
      * @var string
      *
-     * @ORM\Column(name="sub_title", type="string", length=225, nullable=true)
+     * @ORM\Column(name="subtitle", type="string", length=225, nullable=true)
      */
-    protected $sub_title;
+    protected $subtitle;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="content", type="text", nullable=true)
+     */
+    protected $content;
+
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="link", type="string", length=225, nullable=true)
+     */
+    protected $link;
+
 
     /**
      * @var dateTime
@@ -73,27 +90,11 @@ class Banner
      * @ORM\Column(name="created", type="datetime")
      */
     protected $created;
-
-
-    /**
-     * @var
-     * @ORM\Column(name="text_color", type="string", nullable=true)
-     */
-    protected $textColor;
-
-
-    /**
-     * @var
-     *
-     * @ORM\Column(name="online", type="boolean")
-     */
-    protected $online;
-
+    
 
     public function __construct()
     {
         $this->created = new \DateTime('now');
-        $this->online = true;
     }
 
     public function setImageFile(File $image = null)
@@ -195,27 +196,27 @@ class Banner
     }
 
     /**
-     * Set subTitle
+     * Set subtitle
      *
-     * @param string $subTitle
+     * @param string $subtitle
      *
      * @return Banner
      */
-    public function setSubTitle($subTitle)
+    public function setSubtitle($subtitle)
     {
-        $this->sub_title = $subTitle;
+        $this->subtitle = $subtitle;
 
         return $this;
     }
 
     /**
-     * Get subTitle
+     * Get subtitle
      *
      * @return string
      */
-    public function getSubTitle()
+    public function getSubtitle()
     {
-        return $this->sub_title;
+        return $this->subtitle;
     }
 
 
@@ -267,35 +268,43 @@ class Banner
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getTextColor()
+    public function getContent()
     {
-        return $this->textColor;
+        return $this->content;
     }
 
     /**
-     * @param mixed $textColor
+     * @param string $content
+     *
+     * @return Banner
      */
-    public function setTextColor($textColor)
+    public function setContent($content)
     {
-        $this->textColor = $textColor;
+        $this->content = $content;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getOnline()
+    public function getLink()
     {
-        return $this->online;
+        return $this->link;
     }
-
 
     /**
-     * @param mixed $online
+     * @param string $link
+     *
+     * @return Banner
      */
-    public function setOnline($online)
+    public function setLink($link)
     {
-        $this->online = $online;
+        $this->link = $link;
+
+        return $this;
     }
+    
 }

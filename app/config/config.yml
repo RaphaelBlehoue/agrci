@@ -87,6 +87,30 @@ vich_uploader:
             delete_on_remove:   true
             namer:              vich_uploader.namer_uniqid
 
+        banner_image:
+            uri_prefix:         /uploads/banners
+            upload_destination: "%kernel.root_dir%/../web/uploads/banners"
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+            namer:              vich_uploader.namer_uniqid
+
+        team_image:
+            uri_prefix:         /uploads/teams
+            upload_destination: "%kernel.root_dir%/../web/uploads/teams"
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+            namer:              vich_uploader.namer_uniqid
+
+        partner_image:
+            uri_prefix:         /uploads/partners
+            upload_destination: "%kernel.root_dir%/../web/uploads/partners"
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+            namer:              vich_uploader.namer_uniqid
+
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main

@@ -1,5 +1,5 @@
 {% extends 'LabsUboldBundle::loyout_ubold.html.twig' %}
-{% block title %}{{ 'About - Page | AGR' }}{% endblock %}
+{% block title %}{{ 'Partenaire - Page | AGR' }}{% endblock %}
 {% block body %}
     <div class="content">
         <div class="container">
@@ -14,13 +14,13 @@
                         </div>
                     {% endif %}
 
-                    <h4 class="page-title">{{  'Page About' }}</h4>
+                    <h4 class="page-title">{{  'Page Partner' }}</h4>
                     <ol class="breadcrumb">
                         <li>
                             <a href="{{ path('homepage') }}">{{ 'AGR' }}</a>
                         </li>
                         <li class="active">
-                            {{ 'Page About' }}
+                            {{ 'Page Partner' }}
                         </li>
                     </ol>
                 </div>
@@ -30,10 +30,10 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card-box">
-                        <h4 class="m-t-0 header-title"><b>{{ 'Page About' }}</b></h4>
+                        <h4 class="m-t-0 header-title"><b>{{ 'Page Partenaire' }}</b></h4>
                         <p class="text-muted font-13">
-                            <span class="pull-left">Liste du contenu des pages</span>
-                            <span class="pull-right"> <a href="{{ path('about_add') }}" class="btn btn-primary btn-block">{{ 'Créer page About' }}</a> </span>
+                            <span class="pull-left">Liste des partners</span>
+                            <span class="pull-right"> <a href="{{ path('partner_create') }}" class="btn btn-primary btn-block">{{ 'Créer partenaire' }}</a> </span>
                         </p>
                         <div class="clearfix"></div>
 
@@ -53,15 +53,14 @@
                             </thead>
 
                             <tbody>
-                            {% for about in abouts %}
+                            {% for partner in partners %}
                                 <tr>
-                                    <td>{{ about.title }}</td>
-                                    <td>{{ about.subtitle }}</td>
-                                    <td>{{ about.created|date('Y-m-d') }}</td>
-                                    <td><a class="btn btn-block btn-primary" href="{{ path('about_edit', {'id' : about.id }) }}">{{ "Modifier" }}</a></td>
-                                    <td><a class="btn btn-block btn-danger" href="{{ path('about_delete', {'id' : about.id }) }}">{{ "Delete" }}</a></td>
+                                    <td>{{ partner.name }}</td>
+                                    <td>{{ partner.created|date('Y-m-d') }}</td>
+                                    <td><a class="btn btn-block btn-primary" href="{{ path('partner_edit', {'id' : partner.id }) }}">{{ "Modifier" }}</a></td>
+                                    <td><a class="btn btn-block btn-danger" href="{{ path('partner_delete', {'id' : partner.id }) }}">{{ "Delete" }}</a></td>
                                 </tr>
-                             {% endfor %}
+                            {% endfor %}
                             </tbody>
                         </table>
                     </div>

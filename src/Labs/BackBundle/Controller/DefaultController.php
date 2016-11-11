@@ -8,6 +8,7 @@ use Labs\BackBundle\Entity\About;
 use Labs\BackBundle\Form\AboutType;
 use Labs\BackBundle\Form\AboutEditType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 
 class DefaultController extends Controller
@@ -63,7 +64,7 @@ class DefaultController extends Controller
     public  function AboutEditAction(About $about, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $abouts = $em->getRepository('LabsBackBundle:About')->find($about);
+        $abouts = $em->getRepository('LabsBackBundle:About')->findOne($about);
         if(null === $abouts){
             throw new NotFoundHttpException("L'element d'id ".$abouts." n'existe pas");
         }
@@ -74,8 +75,10 @@ class DefaultController extends Controller
             $em->flush();
             return $this->redirectToRoute('about_list');
         }
+        //dump($abouts); die();
         return $this->render('LabsBackBundle:Pages:about_edit.html.twig',array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'id' => $abouts->getId()
         ));
     }
 

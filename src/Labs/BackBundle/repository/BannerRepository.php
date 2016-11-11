@@ -10,4 +10,11 @@ namespace Labs\BackBundle\Repository;
  */
 class BannerRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findOne($entity)
+    {
+        $qb = $this->createQueryBuilder('b');
+        $qb->where($qb->expr()->eq('b.id', ':id'));
+        $qb->setParameter(':id', $entity);
+        return $qb->getQuery()->getOneOrNullResult();
+    }
 }
