@@ -75,9 +75,28 @@ swiftmailer:
 
 
 vich_uploader:
-    db_driver: orm
+    db_driver: orm # or mongodb or propel or phpcr
+    twig:      true
+    storage:   file_system # or gaufrette or flysystem
+    mappings:
+        banner_image_page:
+            uri_prefix:         /uploads/about
+            upload_destination: "%kernel.root_dir%/../web/uploads/pages"
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+            namer:              vich_uploader.namer_uniqid
 
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: Labs\BackBundle\Entity\Users
+
+ivory_ck_editor:
+    default_config: my_custom_config
+    configs:
+        my_custom_config:
+            language: "%locale%"
+            toolbar: [ [ 'Bold','Italic','Underline' ], [ 'NumberedList','BulletedList','-','Outdent','Indent','-','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ], '/', [ 'Maximize' ] ]
+            uiColor:   "#FCFCFC"
+            forcePasteAsPlainText: true

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> {{ 'Dashboard AGR'|capitalize }}</title>
+    <title> {% block title %}{% endblock %}  | {{ 'Dashboard AGR'|capitalize }}</title>
 
     <link href="{{ asset('bundles/labsubold/assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('bundles/labsubold/assets/css/core.css') }}" rel="stylesheet" type="text/css" />
@@ -63,9 +63,9 @@
 <script src="{{ asset('bundles/labsubold/assets/js/wow.min.js') }}"></script>
 <script src="{{ asset('bundles/labsubold/assets/js/jquery.nicescroll.js') }}"></script>
 <script src="{{ asset('bundles/labsubold/assets/js/jquery.scrollTo.min.js') }}"></script>
+{% block javascripts %}{% endblock %}
 
 <script src="{{ asset('bundles/labsubold/assets/js/jquery.core.js') }}"></script>
 <script src="{{ asset('bundles/labsubold/assets/js/jquery.app.js') }}"></script>
-{% block javascripts %}{% endblock %}
 </body>
 

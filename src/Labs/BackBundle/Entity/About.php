@@ -57,6 +57,13 @@ class About
     /**
      * @var string
      *
+     * @ORM\Column(name="subtitle", type="string", length=225)
+     */
+    protected $subtitle;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="content", type="text")
      */
     protected $content;
@@ -107,7 +114,7 @@ class About
     /**
      * @param string $imageName
      *
-     * @return Banner
+     * @return About
      */
     public function setImageName($imageName)
     {
@@ -148,7 +155,6 @@ class About
         return $this->title;
     }
 
-
     /**
      * Set contentDo
      *
@@ -178,7 +184,7 @@ class About
      *
      * @param \DateTime $created
      *
-     * @return Banner
+     * @return About
      */
     public function setCreated($created)
     {
@@ -218,5 +224,28 @@ class About
     {
         return $this->getUploadDir().'/'.$this->imageName;
     }
+
+    /**
+     * @return string
+     */
+    public function getSubtitle()
+    {
+        return $this->subtitle;
+    }
+
+    /**
+     * @param string $subtitle
+     *
+     * @return About
+     */
+    public function setSubtitle($subtitle)
+    {
+        $this->subtitle = $subtitle;
+
+        return $this;
+    }
+
+
+
 
 }
