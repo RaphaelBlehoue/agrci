@@ -1,0 +1,79 @@
+{% extends 'LabsUboldBundle::loyout_ubold.html.twig' %}
+{% block title %}{{ 'Project - Page | AGR' }}{% endblock %}
+{% block body %}
+    <div class="content">
+        <div class="container">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    {% if app.session.flashBag.has('success') %}
+                        <div class="alert alert-success" role="alert">
+                            {% for msg in app.session.flashBag.get('success') %}
+                                <strong> Succès </strong>{{ msg }}.
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <h4 class="page-title">{{  'Page About' }}</h4>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="{{ path('homepage') }}">{{ 'AGR' }}</a>
+                        </li>
+                        <li class="active">
+                            {{ 'Page About' }}
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <!-- end Page Title -->
+            <!-- page content -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card-box">
+                        <h4 class="m-t-0 header-title"><b>{{ 'Page About' }}</b></h4>
+                        <p class="text-muted font-13">
+                            <span class="pull-left">Liste du contenu des project</span>
+                            <span class="pull-right"> <a href="{{ path('project_create') }}" class="btn btn-primary btn-block">{{ 'Créer page project' }}</a> </span>
+                        </p>
+                        <div class="clearfix"></div>
+
+                        <table data-toggle="table"
+                               data-show-columns="false"
+                               data-page-list="[5, 10, 20]"
+                               data-page-size="5"
+                               data-pagination="true" data-show-pagination-switch="true" class="table-bordered " class="padding-top-sm">
+                            <thead>
+                            <tr>
+                                <th data-field="tite" data-switchable="false">{{ 'Titre' }}</th>
+                                <th data-field="subtite" data-switchable="false">{{ 'Sous titre' }}</th>
+                                <th data-field="name">{{ 'date' }}</th>
+                                <th data-field="user-status" class="text-center">Edit</th>
+                                <th data-field="user-del" class="text-center">Del</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            {% for project in projects %}
+                                <tr>
+                                    <td><a href="{{ path('project_view', {'id' : project.id}) }}">{{ project.name }}</a></td>
+                                    <td>{{ project.slug }}</td>
+                                    <td>{{ project.created|date('Y-m-d') }}</td>
+                                    <td><a class="btn btn-block btn-primary" href="{{ path('project_edit', {'id' : project.id }) }}">{{ "Modifier" }}</a></td>
+                                    <td><a class="btn btn-block btn-danger" href="{{ path('project_delete', {'id' : project.id }) }}">{{ "Delete" }}</a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- end page content -->
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/labsubold/assets/plugins/bootstrap-table/js/bootstrap-table.min.js') }}"></script>
+    <script src="{{ asset('bundles/labsubold/assets/pages/jquery.bs-table.js') }}"></script>
+{% endblock %}

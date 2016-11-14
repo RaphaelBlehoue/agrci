@@ -1,0 +1,75 @@
+{% extends 'LabsUboldBundle::loyout_ubold.html.twig' %}
+{% block title %}{{ 'Galerie upload' }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/dropzone.css') }}" />
+{% endblock %}
+{% block body %}
+    <div class="content">
+        <div class="container">
+
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    {% if app.session.flashBag.has('success') %}
+                        <div class="alert alert-success" role="alert">
+                            {% for msg in app.session.flashBag.get('success') %}
+                                <strong> Succèss </strong>{{ msg }}.
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <h4 class="page-title">{{ 'Creation de la page About' }}</h4>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="{{ path('homepage') }}">{{ 'AGR' }}</a>
+                        </li>
+                        <li class="active">
+                            {{ 'Page Media' }}
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <!-- end Page Title -->
+
+            <!-- page content -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card-box">
+
+                        <!-- Widget heading -->
+                        <div class="widget-head">
+                            <h4 class="heading glyphicons file_import"><i></i>Uplodez photos du project <strong>{{ projects.name }}</strong></h4>
+                        </div>
+                        <!-- // Widget heading END -->
+
+                        <div class="widget-body">
+                            <!-- Dropzone -->
+                            <div id="dropzone">
+                                <div action="{{path('media_create', {'project' : projects.id})}}" class="dropzone needsclick dz-clickable" id="dropzone-upload">
+                                    <div class="dz-message needsclick">
+                                       <h3>Faites glisser des fichier ici </br> ou </br> cliquez pour selectionnez depuis l'ordinateur.<br></h3>
+                                        <span class="note needsclick">(uploadez seulement les photos du dossier {{ projects.name }})</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="separator bottom"></div>
+                            <div class="pull-right">
+                                <a href="{{ path('project_view', {'id' : projects.id}) }}" class="btn btn-primary photoView" id="photoView">{{ 'Voir Toutes les Photos du project  '~ projects.name }}</a>
+                            </div>
+                            <div class="clearfix"></div>
+                            <!-- // Dropzone END -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end page content -->
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/dropzone.js') }}"></script>
+    <script src="{{ asset('bundles/labsubold/assets/js/main.js') }}"></script>
+{% endblock %}

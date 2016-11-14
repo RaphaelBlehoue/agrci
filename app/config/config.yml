@@ -7,6 +7,7 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: fr
+    gallery_directory: '%kernel.root_dir%/../web/uploads/gallery'
 
 framework:
     translator:      ~
@@ -55,8 +56,23 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        naming_strategy: doctrine.orm.naming_strategy.underscore
-        auto_mapping: true
+        entity_managers:
+            default:
+                naming_strategy: doctrine.orm.naming_strategy.underscore
+                auto_mapping: true
+                mappings:
+                    gedmo_tree:
+                        type: annotation
+                        prefix: Gedmo\Tree\Entity
+                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity"
+                        alias : GedmoTree # (optional) it will default to the name set for the mapping
+                        is_bundle: false
+
+
+stof_doctrine_extensions:
+    orm:
+        default:
+            sluggable: true
 
 doctrine_migrations:
     dir_name: "%kernel.root_dir%/DoctrineMigrations"
@@ -106,6 +122,14 @@ vich_uploader:
         partner_image:
             uri_prefix:         /uploads/partners
             upload_destination: "%kernel.root_dir%/../web/uploads/partners"
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+            namer:              vich_uploader.namer_uniqid
+
+        blog_image:
+            uri_prefix:         /uploads/posts
+            upload_destination: "%kernel.root_dir%/../web/uploads/posts"
             inject_on_load:     false
             delete_on_update:   true
             delete_on_remove:   true

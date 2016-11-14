@@ -1,0 +1,106 @@
+{% extends 'LabsTemplateBundle::layout.html.twig' %}
+{% block Title %}{{ 'Galerie - weddding | Legend Photography' }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/labstemplate/assets/css/admin/module.admin.page.form_elements.min.css') }}" />
+{% endblock %}
+{% block body %}
+    {% if app.session.flashBag.has('success') %}
+        <div class="alert alert-success" role="alert">
+            {% for msg in app.session.flashBag.get('success') %}
+                <strong> Succès </strong>{{ msg }}.
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <h1 class="bg-white content-heading border-bottom">Dashboard</h1>
+    <div class="bg-white innerAll border-bottom">
+        <ul class="menubar">
+            <li class="active"><a href="">Dashboard</a></li>
+            <li><a href="{{ path('dossier_index') }}">{{ 'Dossier Weddings' }}</a></li>
+            <li><a href="#">{{ 'Galerie Wedding - Choix du Type' }}</a></li>
+        </ul>
+    </div>
+    <div class="innerAll spacing-x2">
+        {{ form_start(form) }}
+            <!-- Row -->
+            <div class="row">
+                <!-- Column -->
+                <div class="col-md-10 col-md-offset-1">
+                    <!-- Widget -->
+                    <div class="widget widget-inverse" >
+                        <!-- Widget heading -->
+                        <div class="widget-head">
+                            <h4 class="heading">{{ 'Choix du Type de galerie'|upper }}</h4>
+                        </div>
+                        <!-- // Widget heading END -->
+                        <div class="widget-body">
+                            <div class="innerB">
+                                <div class="row">
+                                    <div class="col-xs-8 col-xs-offset-2 form-group">
+                                        <label class="control-label" for="name">{{ 'Choix du Type de galerie' }}</label>
+                                        {{ form_row(form.type) }}
+                                        {{ form_errors(form.type) }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <button type="submit" class="btn btn-primary" formnovalidate>{{ 'Etape suivante'|upper }}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- // Widget END -->
+                </div>
+                <!-- // Column END -->
+            </div>
+            <!-- // Row END -->
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/labstemplate/assets/components/library/bootstrap/js/bootstrap.min.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/plugins/nicescroll/jquery.nicescroll.min.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/plugins/breakpoints/breakpoints.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/core/js/animations.init.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/plugins/slimscroll/jquery.slimscroll.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/forms/elements/bootstrap-switch/assets/lib/js/bootstrap-switch.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/forms/elements/bootstrap-switch/assets/custom/js/bootstrap-switch.init.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/forms/elements/uniform/assets/lib/js/jquery.uniform.min.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/forms/elements/uniform/assets/custom/js/uniform.init.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/forms/elements/fuelux-checkbox/fuelux-checkbox.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/modals/assets/js/bootbox.min.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/modals/assets/js/modals.init.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/notifications/gritter/assets/lib/js/jquery.gritter.min.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/notifications/gritter/assets/custom/js/gritter.init.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/forms/editors/wysihtml5/assets/lib/js/wysihtml5-0.3.0_rc2.min.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/forms/editors/wysihtml5/assets/lib/js/bootstrap-wysihtml5-0.0.2.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/forms/editors/wysihtml5/assets/custom/wysihtml5.init.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/forms/wizards/assets/lib/jquery.bootstrap.wizard.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/forms/wizards/assets/custom/js/form-wizards.init.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/forms/elements/jasny-fileupload/assets/js/bootstrap-fileupload.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/forms/elements/button-states/button-loading/assets/js/button-loading.init.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/forms/elements/bootstrap-select/assets/lib/js/bootstrap-select.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/forms/elements/bootstrap-select/assets/custom/js/bootstrap-select.init.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/forms/elements/select2/assets/lib/js/select2.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/forms/elements/select2/assets/custom/js/select2.init.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/forms/elements/inputmask/assets/lib/jquery.inputmask.bundle.min.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/forms/elements/inputmask/assets/custom/inputmask.init.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/forms/elements/bootstrap-datepicker/assets/lib/js/bootstrap-datepicker.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/forms/elements/bootstrap-datepicker/assets/custom/js/bootstrap-datepicker.init.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/forms/elements/bootstrap-timepicker/assets/lib/js/bootstrap-timepicker.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/forms/elements/bootstrap-timepicker/assets/custom/js/bootstrap-timepicker.init.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/forms/elements/colorpicker-farbtastic/assets/js/farbtastic.min.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/forms/elements/colorpicker-farbtastic/assets/js/colorpicker-farbtastic.init.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/plugins/holder/holder.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/core/js/sidebar.main.init.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/core/js/sidebar.collapse.init.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/helpers/themer/assets/plugins/cookie/jquery.cookie.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/core/js/core.init.js?v=v1.2.3') }}"></script>
+
+{% endblock %}

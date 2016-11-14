@@ -97,4 +97,5 @@ $( document ).ready(function() {
 			$('.filter li').removeClass('active');
 			$(this).parent().addClass('active');
 		});
+	
 } );

@@ -1,0 +1,100 @@
+{% extends 'LabsTemplateBundle::layout.html.twig' %}
+{% block Title %}{{ 'Dossier - Wedding | Legend Photography' }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/labstemplate/assets/css/admin/module.admin.page.tables.min.css') }}" />
+{% endblock %}
+{% block body %}
+
+    {% if app.session.flashBag.has('success') %}
+        <div class="alert alert-success" role="alert">
+            {% for msg in app.session.flashBag.get('success') %}
+                <strong> Succès </strong>{{ msg }}.
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <h1 class="bg-white content-heading border-bottom">Dashboard</h1>
+    <div class="bg-white innerAll border-bottom">
+        <ul class="menubar">
+            <li class="active"><a href="">Dashboard</a></li>
+            <li><a href="#">{{ 'Dossiers Wedding' }}</a></li>
+        </ul>
+    </div>
+    <div class="innerAll spacing-x2">
+        <!-- Widget -->
+        <div class="widget widget-inverse">
+            <div class="widget-head">
+                <a href="{{ path('dossier_create') }}" class="btn btn-xs btn-success pull-right">
+                    <i class="icon-add-symbol"></i> {{ 'Créer un dossier de mariage'|upper }}
+                </a>
+                <h4 class="heading">{{ 'Liste des dossiers de mariages'|upper }}</h4>
+            </div>
+            <div class="widget-body padding-bottom-none">
+                <!-- Table -->
+                <table class="dynamicTable tableTools table table-striped checkboxs">
+
+                    <!-- Table heading -->
+                    <thead>
+                    <tr>
+                        <th>{{ 'Nom' }}</th>
+                        <th>{{ 'Packs' }}</th>
+                        <th>{{ 'Date de ceremonie '}}</th>
+                        <th>{{ 'Status' }}</th>
+                        <th>{{ 'Creation' }}</th>
+                        <th>{{ 'Action' }}</th>
+                    </tr>
+                    </thead>
+                    <!-- // Table heading END -->
+
+                    <!-- Table body -->
+                    <tbody>
+                        <!-- Table row -->
+                        {% for dossier in dossiers %}
+                            <tr class="gradeX">
+                                <td>{{ dossier.name }}</td>
+                                <td>{% if dossier.pack|length > 0 %} <span class="label label-success label-stroke">{{ dossier.pack.name }}</span>  {% endif %}</td>
+                                <td>{{ dossier.ceremonyDate|date('d-M-Y') }}</td>
+                                <td><span class="label label-{{ (dossier.online == 1) ? 'success' : 'primary' }}">{{ (dossier.online == 1) ? 'En ligne' : 'Hors ligne' }}</span></td>
+                                <td>{{ booking.dateRes|date('d-M-Y') }}</td>
+                                <td>
+                                    <a href="{{ path('dossier_edit', {'id' : dossier.id}) }}"><i class="fa fa-pencil-square-o"></i></a>
+                                    <a href="{{ path('dossier_delete', {'id' : dossier.id}) }}"><i class="fa fa-trash-o"></i></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        <!-- // Table row END -->
+                    </tbody>
+                    <!-- // Table body END -->
+
+                </table>
+                <!-- // Table END -->
+            </div>
+        </div>
+        <!-- // Widget END -->
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/labstemplate/assets/components/library/bootstrap/js/bootstrap.min.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/plugins/nicescroll/jquery.nicescroll.min.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/plugins/breakpoints/breakpoints.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/core/js/animations.init.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/plugins/slimscroll/jquery.slimscroll.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/tables/datatables/assets/lib/js/jquery.dataTables.min.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/tables/datatables/assets/lib/extras/TableTools/media/js/TableTools.min.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/tables/datatables/assets/lib/extras/ColVis/media/js/ColVis.min.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/tables/datatables/assets/custom/js/DT_bootstrap.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/tables/datatables/assets/custom/js/datatables.init.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/forms/elements/fuelux-checkbox/fuelux-checkbox.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/forms/elements/bootstrap-select/assets/lib/js/bootstrap-select.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/forms/elements/bootstrap-select/assets/custom/js/bootstrap-select.init.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/modules/admin/tables/classic/assets/js/tables-classic.init.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/plugins/holder/holder.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/core/js/sidebar.main.init.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/core/js/sidebar.collapse.init.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/helpers/themer/assets/plugins/cookie/jquery.cookie.js?v=v1.2.3') }}"></script>
+    <script src="{{ asset('bundles/labstemplate/assets/components/core/js/core.init.js?v=v1.2.3') }}"></script>
+
+{% endblock %}
