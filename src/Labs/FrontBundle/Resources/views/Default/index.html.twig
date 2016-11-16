@@ -32,30 +32,19 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="panel panel-grid widget widget_text panel-last-child">
-                                <h3 class="widget-title">{{ 'Qui est AGR' }}</h3>
+                                <h3 class="widget-title">{{ about.subtitle }}</h3>
                             </div>
                         </div>
                     </div>
                     <main class="col-xs-12" role="main">
                         <div class="row">
                             <div class="col-md-6">
-                                <p>BuildPress Inc traces its roots back to 1989 in Colorado and since then have never looked back. With thousands of
-                                    successful projects under our belt, we can proudly say that we are one of the most trusted construction companies in
-                                    Colorado performing both domestic and international construction work.</p>
-                                <p>For more than 25 years, Construction has offered a wide range of construction services in Colorado, many other cities
-                                    of United States and around the world. We strive to maintain the highest standards while exceeding client’s expectations
-                                    at all levels. We not only honor commitments, but are known for meeting tough deadlines while delivering nothing but the
-                                    best. We aim to create a responsive client relationship that allows us to meet and even exceed the goals of each of our
-                                    projects.</p>
-                                <p>BuildPress Inc is well known for its innovation and by collaborating successfully with our customers, designers,
-                                    sub-contractors, consultants as well as suppliers; we have been able to provide more specialized level of services.
-                                    We are continuously evolving and understand the different aspects of delivering high value construction and complex
-                                    projects with ease.</p>
+                                {{ about.content|raw }}
                             </div>
                             <div class="col-md-6">
                                 <p>
-                                    <a href="images/demo/projects/project1.jpg" data-rel="prettyPhoto" title="Project Image">
-                                        <img src="images/demo/projects/medium1.jpg" class="alignnone" alt="Project Image" />
+                                    <a href="{{ about.assertPath|imagine_filter('my_thumb_about') }}" data-rel="prettyPhoto" title="Qui sommes nous">
+                                        <img src="{{ about.assertPath|imagine_filter('my_thumb_about_full') }}" class="alignnone" alt="Qui sommes nous" />
                                     </a>
                                 </p>
                             </div>
@@ -82,93 +71,21 @@
 
                             <!-- THE GRID ITSELF WITH ENTRIES -->
                             <div id="portfolio-content" class="projects-container row">
-                                <div class="project-post  col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                    <!-- THE CONTAINER FOR THE MEDIA AND THE COVER EFFECTS -->
-                                    <img src="http://lorempixel.com/g/360/240" alt="Project Image"  />
-                                    <div class="project-content">
-                                        <div class="inner-project">
-                                            <h3>Contemporary Villa</h3>
-                                            <a href="http://lorempixel.com/g/848/480" class="project-link" title="Contemporary Villa" data-rel="prettyPhoto[gallery]">
-                                                Zoom Project
-                                            </a>
+                                {% for project in projects %}
+                                    <div class="project-post  col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                        {% for media in project.medias %}
+                                            {% if loop.first  %}
+                                            <img src="{{ media.assertPath|imagine_filter('my_thumb_project') }}" alt="{{ project.name }}" />
+                                            {% endif %}
+                                        {% endfor %}
+                                        <div class="project-content">
+                                            <div class="inner-project">
+                                                <h3>{{ project.name }}</h3>
+                                                <a href="" class="project-link">{{ 'Detail'|upper }}</a>
+                                            </div>
                                         </div>
                                     </div>
-
-                                </div>
-                                <div class="project-post  col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                    <!-- THE CONTAINER FOR THE MEDIA AND THE COVER EFFECTS -->
-                                    <img src="images/demo/projects/1.jpg" alt="Project Image" />
-                                    <div class="project-content">
-                                        <div class="inner-project">
-                                            <h3>Green House</h3>
-                                            <a href="projects-single.html" class="project-link">View Project</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="project-post  col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                    <!-- THE CONTAINER FOR THE MEDIA AND THE COVER EFFECTS -->
-                                    <img src="http://lorempixel.com/g/358/238" alt="Project Image"  />
-                                    <div class="project-content">
-                                        <div class="inner-project">
-                                            <h3>Villa Rustica Renovation</h3>
-                                            <a href="http://lorempixel.com/g/847/437" class="project-link" title="Villa Rustica Renovation" data-rel="prettyPhoto[gallery]">
-                                                Zoom Project
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="project-post  col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                    <!-- THE CONTAINER FOR THE MEDIA AND THE COVER EFFECTS -->
-                                    <img src="images/demo/projects/6.jpg" alt="Project Image" />
-                                    <div class="project-content">
-                                        <div class="inner-project">
-                                            <h3>Pool In Luxury Neighbourhood</h3>
-                                            <a href="projects-single.html" class="project-link">View Project</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="project-post  col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                    <!-- THE CONTAINER FOR THE MEDIA AND THE COVER EFFECTS -->
-                                    <img src="images/demo/projects/2.jpg" alt="Project Image" />
-                                    <div class="project-content">
-                                        <div class="inner-project">
-                                            <h3>House of Cards</h3>
-                                            <a href="images/demo/projects/big1.jpg" class="project-link" title="House of Cards" data-rel="prettyPhoto[gallery]">
-                                                Zoom Project
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="project-post  col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                    <!-- THE CONTAINER FOR THE MEDIA AND THE COVER EFFECTS -->
-                                    <img src="images/demo/projects/8.jpg" alt="Project Image"  />
-                                    <div class="project-content">
-                                        <div class="inner-project">
-                                            <h3>Green School</h3>
-                                            <a href="projects-single.html" class="project-link">View Project</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="project-post  col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                    <img src="images/demo/projects/5.jpg" alt="Project Image"  />
-                                    <div class="project-content">
-                                        <div class="inner-project">
-                                            <h3>House Under The Palms</h3>
-                                            <a href="images/demo/projects/big1.jpg" class="project-link" title="House Under The Palms" data-rel="prettyPhoto[gallery]">
-                                                Zoom Project
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="project-post  col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                    <img src="images/demo/projects/7.jpg" alt="Project Image" />
-                                    <div class="project-content">
-                                        <div class="inner-project">
-                                            <h3>Kitchen And Living Room</h3>
-                                            <a href="projects-single.html" class="project-link">View Project</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -184,7 +101,7 @@
                         <div class="textwidget"></div>
                     </div>
                     <div class="panel panel-grid widget widget_black-studio-tinymce panel-last-child" id="panel-7-3-0-1">
-                        <h3 class="widget-title">Why Choose Us</h3>
+                        <h3 class="widget-title">{{ 'Nos services' }}</h3>
                         <div class="textwidget">
                             <h5>
                                 <span style="color: #fcc71f"><br/><span class="icon-container"><span class="fa fa-check"></span></span></span>
@@ -219,24 +136,28 @@
                         <div class="textwidget"></div>
                     </div>
                     <div class="panel panel-grid widget widget_black-studio-tinymce panel-last-child" id="panel-7-3-1-1">
-                        <h3 class="widget-title">Who We Are?</h3>
+                            <h3 class="widget-title">{{ 'Notre Architecte' }}</h3>
                         <div class="textwidget">
                             <p>
-                                <a href="images/demo/content/content_24.jpg" data-rel="prettyPhoto">
-                                    <img class="alignleft wp-image-115 size-medium" src="images/demo/content/content_3.jpg" alt="Content Image" width="300" height="168"/>
-                                </a>
-                                <a href="images/demo/content/content_23.jpg" data-rel="prettyPhoto">
-                                    <img class="alignleft wp-image-116 size-medium" src="images/demo/content/content_4.jpg" alt="Content Image" width="300" height="168"/>
+                                <a href="{{ asset('images/architect_2x.jpg') }}" data-rel="prettyPhoto">
+                                    <img class="alignleft wp-image-115 size-medium" src="{{ asset('images/architect.jpg') }}" alt="Content Image" width="300" height="168"/>
                                 </a>
                             </p>
                             <p>
-                                BuildPress Inc traces its roots back to 1989 in Colorado and since then have never looked back. With thousands of
-                                successful projects under our belt, we can proudly say that we are one of the most trusted construction companies
-                                in Colorado performing both domestic and international construction work. For more than 25 years, Construction has
-                                offered a wide range of construction services in Colorado, many other cities of United States and around the world.
+                                <b>Cesare Stefano Bernadinelli</b> est  un architecte-urbaniste  italien
+                                avec une expérience exceptionnelle dans le domaine des stations
+                                touristiques et de golf. Titulaire d'une maîtrise en architecture et urbanisation
+                                de l'Université polytechnique de Milan, c'est en 1983 qu'il a commencé la mise en œuvre
+                                d'installations touristiques, la Planification des projets touristiques,
+                                la conception de terrains de golf et centres de villégiature,
+                                de villages de vacances, des hôtels, des logements sociaux,
+                                des centres commerciaux et des aéroports pour des destinations touristiques
                             </p>
-                            <p>We strive to maintain the highest standards while exceeding client’s expectations at all levels.</p>
-                            <h5><strong><a href="about-us">READ MORE</a></strong></h5>
+                            <p>
+                                Pendant plus de 30 ans, il a conçu et construit 26 hôtels et villages de vacances, 3 aéroports internationaux pour le tourisme, ainsi que 6 stations de golf Resort en Europe,
+                                dans les Caraïbes, en Amérique latine et au Moyen-Orient ...
+                            </p>
+                            <h5><strong><a href="about-us">{{ 'Lire la suite' }}</a></strong></h5>
                         </div>
                     </div>
                 </div>

@@ -18,4 +18,10 @@ class AboutRepository extends \Doctrine\ORM\EntityRepository
         $qb->setParameter(':id', $entity);
         return $qb->getQuery()->getOneOrNullResult();
     }
+
+    public function findPage()
+    {
+        $qb = $this->createQueryBuilder('a');
+        return $qb->getQuery()->getOneOrNullResult();
+    }
 }

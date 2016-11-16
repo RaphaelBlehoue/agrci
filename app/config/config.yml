@@ -97,7 +97,7 @@ vich_uploader:
     mappings:
         banner_image_page:
             uri_prefix:         /uploads/about
-            upload_destination: "%kernel.root_dir%/../web/uploads/pages"
+            upload_destination: "%kernel.root_dir%/../web/uploads/about"
             inject_on_load:     false
             delete_on_update:   true
             delete_on_remove:   true
@@ -148,3 +148,28 @@ ivory_ck_editor:
             toolbar: [ [ 'Bold','Italic','Underline' ], [ 'NumberedList','BulletedList','-','Outdent','Indent','-','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ], '/', [ 'Maximize' ] ]
             uiColor:   "#FCFCFC"
             forcePasteAsPlainText: true
+
+
+#liip_imagine upload crop image
+
+liip_imagine:
+    resolvers:
+       default:
+          web_path: ~
+
+    filter_sets:
+        cache: ~
+        my_thumb_about:
+            quality: 95
+            filters:
+                thumbnail: { size: [555, 312], mode: outbound }
+
+        my_thumb_about_full:
+            quality: 90
+            filters:
+                thumbnail: { size: [1024, 574], mode: outbound }
+
+        my_thumb_project:
+            quality: 90
+            filters:
+                thumbnail: { size: [360, 240], mode: outbound }
