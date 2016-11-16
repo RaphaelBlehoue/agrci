@@ -26,7 +26,7 @@
         {% include 'LabsFrontBundle:includes:top.html.twig' %}
         {% include 'LabsFrontBundle:includes:header.html.twig' %}
 
-        {% include 'LabsFrontBundle:includes:slide.html.twig' %}
+        {{ render(controller('LabsFrontBundle:Default:Slide')) }}
 
         {% block body %}{% endblock %}
 
