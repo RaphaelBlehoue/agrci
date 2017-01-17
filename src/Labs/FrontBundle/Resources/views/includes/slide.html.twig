@@ -1,34 +1,18 @@
-<div class="jumbotron  jumbotron--with-captions">
-    <div class="carousel  slide  js-jumbotron-slider" id="headerCarousel" data-interval="5000">
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner">
+<section id="slider" class="slider-parallax swiper_wrapper clearfix" style="height: 550px;" data-loop="true">
+    <div class="swiper-container swiper-parent">
+        <div class="swiper-wrapper">
             {% for slide in sliders %}
-                <div class="item {% if loop.first %} active {% endif %}">
-                    <img src="{{ asset(slide.assertPath|imagine_filter('my_thumb_banner')) }}"	alt="{{ slide.subtitle }}" />
-                    <div class="container">
-                        <div class="carousel-content">
-                            <div class="jumbotron__category">
-                                <h6>{{ slide.title }}</h6>
-                            </div>
-                            <div class="jumbotron__title">
-                                <h1>{{ slide.subtitle }}</h1>
-                            </div>
-                            <div class="jumbotron__content">
-                                <p>{{ slide.content }}</p>
-                                <a class="btn  btn-primary" href="{{ path(slide.link) }}">{{ 'En savoir +'|upper }}</a>
-                            </div>
+                <div class="swiper-slide" style="background-image: url('{{ asset(slide.assertPath|imagine_filter('my_thumb_banner')) }}'); background-position: center top;">
+                    <div class="container clearfix">
+                        <div class="slider-caption">
+                            <h2>{{ slide.title }}</h2>
+                            <p>{{ slide.content }}</p>
                         </div>
                     </div>
                 </div>
             {% endfor %}
-
         </div>
-        <!-- Controls -->
-        <a class="left carousel-control" href="#headerCarousel" role="button" data-slide="prev">
-            <i class="fa fa-angle-left"></i>
-        </a>
-        <a class="right carousel-control" href="#headerCarousel" role="button" data-slide="next">
-            <i class="fa fa-angle-right"></i>
-        </a>
+        <div id="slider-arrow-left"><i class="icon-angle-left"></i></div>
+        <div id="slider-arrow-right"><i class="icon-angle-right"></i></div>
     </div>
-</div>
+</section>

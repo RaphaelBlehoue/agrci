@@ -1,104 +1,73 @@
-<header class="header">
-    <div class="container">
-        <div class="logo">
-            <a href="index.html">
-                <img src="{{ asset('images/logo.png') }}" alt="AGR" class="img-responsive"/>
-            </a>
-        </div>
-        <div class="header-widgets  header-widgets-desktop">
-            <div class="widget  widget-icon-box">
-                <div class="icon-box">
-                    <i class="fa  fa-phone  fa-3x"></i>
-                    <div class="icon-box__text">
-                        <h4 class="icon-box__title">(00225) 22 43 63 68 </h4>
-                        <span class="icon-box__subtitle">agr@agrci.com</span>
-                    </div>
+<header id="header" class="sticky-style-2">
+
+    <div class="container clearfix">
+
+        <!-- Logo
+        ============================================= -->
+        <div id="logo">
+            <a href="{{ path('homepage') }}" class="standard-logo"><img src="{{ asset('img/logo.png')  }}" alt="AGR LOGO"></a>
+            <a href="{{ path('homepage') }}" class="retina-logo"><img src="{{ asset('img/logo@2x.png') }}" alt="AGR LOGO"></a>
+        </div><!-- #logo end -->
+
+        <ul class="header-extras">
+            <li>
+                <i class="i-plain icon-call nomargin"></i>
+                <div class="he-text">
+                    {{ 'Nous Contactez' }}
+                    <span>(0025) 22 54215821</span>
                 </div>
-            </div>
-            <div class="widget  widget-icon-box">
-                <div class="icon-box">
-                    <i class="fa fa-home fa-3x"></i>
-                    <div class="icon-box__text">
-                        <h4 class="icon-box__title">Abidjan (Côte d'Ivoire)</h4>
-                        <span class="icon-box__subtitle">Cocody II Plateaux Attoban</span>
-                    </div>
+            </li>
+            <li>
+                <i class="i-plain icon-line2-envelope nomargin"></i>
+                <div class="he-text">
+                    {{ 'Adresse Email' }}
+                    <span>info@canvas.com</span>
                 </div>
-            </div>
-            <div class="widget  widget-icon-box">
-                <div class="icon-box">
-                    <i class="fa  fa-clock-o  fa-3x"></i>
-                    <div class="icon-box__text">
-                        <h4 class="icon-box__title">Lun - Sam 8.00 - 18.00</h4>
-                        <span class="icon-box__subtitle">BP 4753 Abidjan 01</span>
-                    </div>
+            </li>
+            <li>
+                <i class="i-plain icon-line-clock nomargin"></i>
+                <div class="he-text">
+                    {{ 'Ouverts' }}
+                    <span>Lun - Sam, 8H a 18H</span>
                 </div>
-            </div>
-            <div class="widget  widget-social-icons">
-                <a class="social-icons__link" href="#" target="_blank"><i class="fa  fa-facebook"></i></a>
-                <a class="social-icons__link" href="#" target="_blank"><i class="fa  fa-twitter"></i></a>
-                <a class="social-icons__link" href="#" target="_blank"><i class="fa  fa-youtube"></i></a>
-            </div>
-        </div>
-        <!-- Toggle Button for Mobile Navigation -->
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#buildpress-navbar-collapse">
-            <span class="navbar-toggle__text">MENU</span>
-				<span class="navbar-toggle__icon-bar">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</span>
-        </button>
+            </li>
+        </ul>
+
     </div>
-    <div class="sticky-offset js-sticky-offset"></div>
-    <div class="container">
-        <div class="navigation">
-            <div class="collapse  navbar-collapse" id="buildpress-navbar-collapse">
-                <ul id="menu-main-menu" class="navigation--main">
-                    <li class="current-menu-item"><a href="i">{{ 'Accueil'|upper }}</a></li>
-                    <li><a href="">{{ 'Qui sommes nous'|upper }}</a></li>
-                    <li><a href="">{{ 'Projets'|upper }}</a></li>
-                    <li><a href="">{{ 'nos plans'|upper }}</a></li>
-                    <li><a href="">{{ 'Blog'|upper }}</a></li>
-                    <li><a href="">{{ 'partenaires'|upper }}</a></li>
-                    <li><a href="">{{ 'contacts'|upper }}</a></li>
+
+    <div id="header-wrap">
+
+        <!-- Primary Navigation
+        ============================================= -->
+        <nav id="primary-menu" class="with-arrows style-2 center">
+
+            <div class="container clearfix">
+
+                <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+
+                <ul>
+                    <li><a href="#"><div>{{ 'Accueil' }}</div></a></li>
+                    <li><a href="#"><div>{{ 'Notre Entreprise' }}</div></a>
+                        <ul>
+                            <li><a href="{{ path('about') }}"><div>{{ 'Qui sommes nous' }}</div></a></li>
+                            <li><a href="{{ path('services') }}"><div>{{ 'Nos services' }}</div></a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{{ path('architect') }}"><div>{{ 'Notre Architecte' }}</div></a></li>
+                    <li><a href="{{ path('project') }}"><div>{{ 'Projets' }}</div></a>
+                        <ul>
+                            <li><a href="#"><div>{{ 'Projets en cours' }}</div></a></li>
+                            <li><a href="#"><div>{{ 'Projets réalisés' }}</div></a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{{ path('partners') }}"><div>{{ 'Partenaires' }}</div></a></li>
+                    <li><a href="{{ path('blog') }}"><div>{{ 'Blog' }}</div></a></li>
+                    <li><a href="{{ path('contact') }}"><div>{{ 'Nous Contacter' }}</div></a></li>
                 </ul>
             </div>
-        </div>
+
+        </nav><!-- #primary-menu end -->
+
     </div>
-    <div class="container">
-        <div class="header-widgets  hidden-md  hidden-lg">
-            <div class="widget  widget-icon-box">
-                <div class="icon-box">
-                    <i class="fa  fa-phone  fa-3x"></i>
-                    <div class="icon-box__text">
-                        <h4 class="icon-box__title">(00225) 22 43 63 68 </h4>
-                        <span class="icon-box__subtitle">agr@agrci.com</span>
-                    </div>
-                </div>
-            </div>
-            <div class="widget  widget-icon-box">
-                <div class="icon-box">
-                    <i class="fa  fa-home  fa-3x"></i>
-                    <div class="icon-box__text">
-                        <h4 class="icon-box__title">Abidjan (Côte d'Ivoire)</h4>
-                        <span class="icon-box__subtitle">Cocody II Plateaux Attoban</span>
-                    </div>
-                </div>
-            </div>
-            <div class="widget  widget-icon-box">
-                <div class="icon-box">
-                    <i class="fa  fa-clock-o  fa-3x"></i>
-                    <div class="icon-box__text">
-                        <h4 class="icon-box__title">Lun - Sam 8.00 - 18.00</h4>
-                        <span class="icon-box__subtitle">BP 4753 Abidjan 01</span>
-                    </div>
-                </div>
-            </div>
-            <div class="widget  widget-social-icons">
-                <a class="social-icons__link" href="#" target="_blank"><i class="fa fa-facebook"></i></a>
-                <a class="social-icons__link" href="#" target="_blank"><i class="fa fa-twitter"></i></a>
-                <a class="social-icons__link" href="#" target="_blank"><i class="fa fa-youtube"></i></a>
-            </div>
-        </div>
-    </div>
-</header>
+
+</header><!-- #header end -->

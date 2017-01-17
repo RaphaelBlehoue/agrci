@@ -1,18 +1,32 @@
-<div class="top">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-md-6">
-                <div class="top__left">{{ 'Nous construisons les plans et les maisons du futur' }}</div>
-            </div>
-            <div class="col-xs-12 col-md-6">
-                <div class="top__right">
-                    <ul id="menu-top-menu" class="navigation--top">
-                        <li><a href="">{{ 'besoins d\'aide'|capitalize }}</a></li>
-                        <li><a href="">{{ 'FAQ' }}</a></li>
-                        <li><a target="_blank" href="">{{ 'Touslesjours.com' }}</a></li>
-                    </ul>
-                </div>
-            </div>
+<div id="top-bar">
+    <div class="container clearfix">
+        <div class="col_half nobottommargin clearfix">
+            <!-- Top Social
+            ============================================= -->
+            <div id="top-social">
+                <ul>
+                    <li><a href="#" class="si-facebook"><span class="ts-icon"><i class="icon-facebook"></i></span><span class="ts-text">Facebook</span></a></li>
+                    <li><a href="#" class="si-twitter"><span class="ts-icon"><i class="icon-twitter"></i></span><span class="ts-text">Twitter</span></a></li>
+                    <li><a href="#" class="si-pinterest"><span class="ts-icon"><i class="icon-pinterest"></i></span><span class="ts-text">Pinterest</span></a></li>
+                    <li><a href="#" class="si-instagram"><span class="ts-icon"><i class="icon-instagram2"></i></span><span class="ts-text">Instagram</span></a></li>
+                </ul>
+            </div><!-- #top-social end -->
+
         </div>
+
+        <div class="col_half fright col_last clearfix nobottommargin">
+
+            <!-- Top Links
+            ============================================= -->
+            <div class="top-links">
+                <ul>
+                    <li><a href="{{ path('blog') }}">Notre Blog</a></li>
+                    <li><a href="{{ path('contact') }}">Nous Contacter</a></li>
+                </ul>
+            </div><!-- .top-links end -->
+
+        </div>
+
     </div>
-</div>
+
+</div><!-- #top-bar end -->

@@ -1,0 +1,90 @@
+{% extends '::base.html.twig' %}
+{% block stylesheets %}{% endblock %}
+
+{% block body %}
+    <div class="main-title" style="background-color: #f2f2f2">
+        <div class="container">
+            <h1 class="main-title__primary">{{ 'Nous contactez' }}</h1>
+            <h3 class="main-title__secondary">{{ 'Abidjan golf Resolt'|upper }}</h3>
+        </div>
+    </div>
+    <div class="breadcrumbs ">
+        <div class="container">
+            <span typeof="v:Breadcrumb"><a title="Go to BuildPress." href="{{ path('front_home') }}" class="home">{{ 'Accueil' }}</a></span>
+            <span typeof="v:Breadcrumb"><span>{{ 'contact' }}</span></span>
+        </div>
+    </div>
+    <div class="master-container">
+        <div class="container">
+            <div class="row">
+                <main class="col-xs-12" role="main">
+                    <div class="row">
+                        <h1 class="center"> {{ 'contenu en attente'|upper }}</h1>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+    <div class="master-container">
+        <div class="panel widget widget_pt_google_map panel-first-child panel-last-child" id="panel-29-0-0-0">
+            <div class="simple-map  js-where-we-are" data-latlng="51.507331,-0.127668" data-markers="[{&quot;title&quot;:&quot;London&quot;,&quot;locationlatlng&quot;:&quot;51.507331,-0.127668&quot;,&quot;custompinimage&quot;:&quot;https:\/\/demo.proteusthemes.com\/buildpress\/wp-content\/themes\/buildpress\/assets\/images\/map_pin.png&quot;,&quot;id&quot;:&quot;1&quot;},{&quot;title&quot;:&quot;Second Office&quot;,&quot;locationlatlng&quot;:&quot;51.492742, -0.232989&quot;,&quot;custompinimage&quot;:&quot;https:\/\/demo.proteusthemes.com\/buildpress\/wp-content\/themes\/buildpress\/assets\/images\/map_pin.png&quot;,&quot;id&quot;:&quot;11&quot;},{&quot;title&quot;:&quot;Number of Locations is unlimited&quot;,&quot;locationlatlng&quot;:&quot;51.484192, 0.040065&quot;,&quot;custompinimage&quot;:&quot;https:\/\/demo.proteusthemes.com\/buildpress\/wp-content\/themes\/buildpress\/assets\/images\/map_pin.png&quot;,&quot;id&quot;:&quot;111&quot;}]" data-zoom="12" data-type="roadmap" data-style="[{&quot;featureType&quot;:&quot;landscape&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;lightness&quot;:65},{&quot;visibility&quot;:&quot;on&quot;}]},{&quot;featureType&quot;:&quot;poi&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;lightness&quot;:51},{&quot;visibility&quot;:&quot;simplified&quot;}]},{&quot;featureType&quot;:&quot;road.highway&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;visibility&quot;:&quot;simplified&quot;}]},{&quot;featureType&quot;:&quot;road.arterial&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;lightness&quot;:30},{&quot;visibility&quot;:&quot;on&quot;}]},{&quot;featureType&quot;:&quot;road.local&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;lightness&quot;:40},{&quot;visibility&quot;:&quot;on&quot;}]},{&quot;featureType&quot;:&quot;transit&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;visibility&quot;:&quot;simplified&quot;}]},{&quot;featureType&quot;:&quot;administrative.province&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;water&quot;,&quot;elementType&quot;:&quot;labels&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;on&quot;},{&quot;lightness&quot;:-25},{&quot;saturation&quot;:-100}]},{&quot;featureType&quot;:&quot;water&quot;,&quot;elementType&quot;:&quot;geometry&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#ffff00&quot;},{&quot;lightness&quot;:-25},{&quot;saturation&quot;:-97}]}]" style="height: 380px;">
+            </div>
+        </div>
+        <div class="spacer-big"></div>
+        <div class="hentry container" role="main">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-grid widget widget_text panel-last-child">
+                        <h3 class="widget-title">{{ 'Contacts' }}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="spacer"></div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="textwidget panel widget">
+                        <span class="icon-container"><span class="fa fa-home"></span></span> <b>AGR, SA.</b><br>
+                        Cocody II Plateaux Attoban<br>
+                        BP 4753 Abidjan 01<br><br>
+                        <span class="icon-container"><span class="fa fa-phone"></span></span> <b>(00225) 22 43 63 68</b><br>
+                        <span class="icon-container"><span class="fa fa-envelope"></span></span><a href="mailto:info@example.com">agr@agrci.com</a>
+                        <br><br>
+                        <span class="icon-container"><span class="fa fa-home"></span></span> <b>Lun - Sam 8.00 - 18.00</b><br>
+                    </div>
+                    <div class="panel widget widget_pt_social_icons panel-last-child">
+                        <a class="social-icons__link" href="#" target="_blank"><i class="fa  fa-facebook"></i></a>
+                        <a class="social-icons__link" href="#" target="_blank"><i class="fa  fa-twitter"></i></a>
+                        <a class="social-icons__link" href="#" target="_blank"><i class="fa  fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="wpcf7" id="wpcf7-f5-o1" lang="en-US" dir="ltr">
+                        <form method="post" class="wpcf7-form" novalidate="novalidate">
+                            <div class="row">
+                                <div class="col-xs-12  col-sm-4">
+									<span class="wpcf7-form-control-wrap your-name">
+										<input type="text" name="your-name" value="" size="40" class="wpcf7-form-control wpcf7-text" placeholder="Your Name"/>
+									</span><br/>
+									<span class="wpcf7-form-control-wrap your-email">
+										<input type="email" name="your-email" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email" placeholder="E-mail address"/>
+									</span><br/>
+									<span class="wpcf7-form-control-wrap your-subject">
+										<input type="text" name="your-subject" value="" size="40" class="wpcf7-form-control wpcf7-text" placeholder="Subject"/>
+									</span>
+                                </div>
+                                <div class="col-xs-12  col-sm-8">
+									<span class="wpcf7-form-control-wrap your-message">
+										<textarea name="your-message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea" placeholder="Message"></textarea>
+									</span><br/>
+                                    <input type="submit" value="SEND MESSAGE" class="wpcf7-form-control wpcf7-submit btn btn-primary"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /container -->
+    </div>
+{% endblock %}
+
+{% block javascripts %} {% endblock %}

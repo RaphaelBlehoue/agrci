@@ -1,49 +1,82 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8"/>
-        <title>{{ 'Bienvenu à AGR' }}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400,700%3Alatin%7CMontserrat%3A700%3Alatin"/>
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
-        <link rel="stylesheet" href="{{ asset('css/prettyPhoto.css') }}"/>
+<html dir="ltr" lang="en-US">
+<head>
 
-        <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/isotope.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/imagesloaded.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/modernizr.custom.24530.js') }}"></script>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="SemiColonWeb" />
 
-    <div class="boxed-container">
-        {% include 'LabsFrontBundle:includes:top.html.twig' %}
-        {% include 'LabsFrontBundle:includes:header.html.twig' %}
+    <!-- Stylesheets
+    ============================================= -->
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700|Roboto:300,400,500,700" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('css/agrcss.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('css/swiper.css') }}" type="text/css" />
 
-        {{ render(controller('LabsFrontBundle:Default:Slide')) }}
+    <!-- Construction Demo Specific Stylesheet -->
+    <link rel="stylesheet" href="{{ asset('agrcss/agrcss.css') }}" type="text/css" />
+    <!-- / -->
 
-        {% block body %}{% endblock %}
+    <link rel="stylesheet" href="{{ asset('css/dark.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('css/font-icons.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('css/animate.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}" type="text/css" />
 
-        {% include 'LabsFrontBundle:includes:footer.html.twig' %}
-    </div><!-- end of .boxed-container -->
+    <link rel="stylesheet" href="{{ asset('agrcss/css/fonts.css') }}" type="text/css" />
 
+    <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <script type="text/javascript" src="{{ asset('js/almond.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/underscore.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('agrcss/css/colors.css') }}" type="text/css" />
 
-        <script type="text/javascript" src="{{ asset('js/jquery.prettyPhoto.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/header_carousel.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/sticky_navbar.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/simplemap.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/main.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/require.js') }}"></script>
-        {% block javascripts %}{% endblock %}
-    </body>
+    <!-- Document Title
+    ============================================= -->
+    <title>Construction | Canvas</title>
+
+</head>
+
+<body class="stretched">
+
+<!-- Document Wrapper
+============================================= -->
+<div id="wrapper" class="clearfix">
+
+    <!-- Top Bar
+    ============================================= -->
+    {% include 'LabsFrontBundle:includes:top.html.twig' %}
+    <!-- Header
+    ============================================= -->
+    {% include 'LabsFrontBundle:includes:header.html.twig' %}
+
+    {% block slide %}{% endblock %}
+    <!-- Content
+    ============================================= -->
+    <section id="content">
+
+        <div class="content-wrap">
+            {% block body %}{% endblock %}
+        </div>
+
+    </section><!-- #content end -->
+
+    <!-- Footer
+    ============================================= -->
+    {% include 'LabsFrontBundle:includes:footer.html.twig' %}<!-- #footer end -->
+
+</div><!-- #wrapper end -->
+
+<!-- Go To Top
+============================================= -->
+<div id="gotoTop" class="icon-angle-up"></div>
+
+<!-- External JavaScripts
+============================================= -->
+<script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/plugins.js') }}"></script>
+
+<!-- Footer Scripts
+============================================= -->
+<script type="text/javascript" src="{{ asset('js/functions.js') }}"></script>
+{% block javascripts %}{% endblock %}
+
+</body>
 </html>

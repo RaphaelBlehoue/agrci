@@ -1,0 +1,30 @@
+{% extends '::base.html.twig' %}
+{% block stylesheets %}{% endblock %}
+
+{% block body %}
+    <div class="main-title" style="background-color: #f2f2f2">
+        <div class="container">
+            <h1 class="main-title__primary">{{ 'Nos activités' }}</h1>
+            <h3 class="main-title__secondary">{{ 'Abidjan golf Resolt'|upper }}</h3>
+        </div>
+    </div>
+    <div class="breadcrumbs ">
+        <div class="container">
+            <span typeof="v:Breadcrumb"><a title="Go to BuildPress." href="{{ path('front_home') }}" class="home">{{ 'Accueil' }}</a></span>
+            <span typeof="v:Breadcrumb"><span>{{ 'Blog' }}</span></span>
+        </div>
+    </div>
+    <div class="master-container">
+        <div class="container">
+            <div class="row">
+                <main class="col-xs-12" role="main">
+                    <div class="row">
+                        <h1 class="center"> {{ 'contenu en attente'|upper }}</h1>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %} {% endblock %}
