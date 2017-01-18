@@ -1,27 +1,186 @@
 {% extends '::base.html.twig' %}
 {% block stylesheets %}{% endblock %}
+{% block Title %}{{ 'AGR - Qui sommes nous'|upper }}{% endblock %}
+{% block header %}
+    <!-- Page Title
+    ============================================= -->
+    <section id="page-title" class="nobg">
+        <div class="container clearfix">
+            <h1>{{ about.title }}</h1>
+            <span>{{ 'Qui est AGR ' }}</span>
+            <ol class="breadcrumb">
+                <li><a href="{{ path('front_home') }}">{{ 'Accuiel' }}</a></li>
+                <li class="active">{{ about.title }}</li>
+            </ol>
+        </div>
+    </section><!-- #page-title end -->
+{% endblock %}
 
 {% block body %}
-    <div class="main-title" style="background-color: #f2f2f2">
-        <div class="container">
-            <h1 class="main-title__primary">{{ 'Qui sommes nous' }}</h1>
-            <h3 class="main-title__secondary">{{ 'Abidjan golf Resolt'|upper }}</h3>
-        </div>
-    </div>
-    <div class="breadcrumbs ">
-        <div class="container">
-            <span typeof="v:Breadcrumb"><a title="Go to BuildPress." href="{{ path('front_home') }}" class="home">{{ 'Accueil' }}</a></span>
-            <span typeof="v:Breadcrumb"><span>{{ 'Qui sommes nous' }}</span></span>
-        </div>
-    </div>
-    <div class="master-container">
-        <div class="container">
-            <div class="row">
-                <main class="col-xs-12" role="main">
-                    <div class="row">
-                        <h1 class="center"> {{ 'contenu en attente'|upper }}</h1>
+
+    <div class="container clearfix">
+        <div class="row clearfix">
+            <div class="col-md-6">
+                <div class="heading-block nobottomborder bottommargin-sm">
+                    <h3>{{ about.title }}</h3>
+                    <span> {{ about.subtitle }}</span>
+                </div>
+                <p>{{ about.content|raw }}</p>
+            </div>
+            <div class="col-md-6">
+                <div class="fslider flex-thumb-grid grid-6" data-pagi="false" data-arrows="false" data-thumbs="true">
+                    <div class="flexslider">
+                        <div class="slider-wrap">
+                            <div class="slide" data-thumb="images/gallery/thumbs/1.jpg">
+                                <img src="images/gallery/1.jpg" alt="Image">
+                                <div class="flex-caption slider-caption-bg slider-caption-bg-light">Government Contraction</div>
+                            </div>
+                            <div class="slide" data-thumb="images/gallery/thumbs/2.jpg">
+                                <img src="images/gallery/2.jpg" alt="Image">
+                                <div class="flex-caption slider-caption-bg slider-caption-bg-light">Home Renovation</div>
+                            </div>
+                            <div class="slide" data-thumb="images/gallery/thumbs/3.jpg">
+                                <img src="images/gallery/3.jpg" alt="Image">
+                                <div class="flex-caption slider-caption-bg slider-caption-bg-light">Residential Construction</div>
+                            </div>
+                            <div class="slide" data-thumb="images/gallery/thumbs/4.jpg">
+                                <img src="images/gallery/4.jpg" alt="Image">
+                                <div class="flex-caption slider-caption-bg slider-caption-bg-light">Wooden Floor</div>
+                            </div>
+                            <div class="slide" data-thumb="images/gallery/thumbs/5.jpg">
+                                <img src="images/gallery/5.jpg" alt="Image">
+                                <div class="flex-caption slider-caption-bg slider-caption-bg-light">Repairing of Houses</div>
+                            </div>
+                            <div class="slide" data-thumb="images/gallery/thumbs/6.jpg">
+                                <img src="images/gallery/6.jpg" alt="Image">
+                                <div class="flex-caption slider-caption-bg slider-caption-bg-light">Building Renovaion</div>
+                            </div>
+                            <div class="slide" data-thumb="images/gallery/thumbs/7.jpg">
+                                <img src="images/gallery/7.jpg" alt="Image">
+                                <div class="flex-caption slider-caption-bg slider-caption-bg-light">Hightech Construction</div>
+                            </div>
+                            <div class="slide" data-thumb="images/gallery/thumbs/8.jpg">
+                                <img src="images/gallery/8.jpg" alt="Image">
+                                <div class="flex-caption slider-caption-bg slider-caption-bg-light">Hardwood Flooring</div>
+                            </div>
+                            <div class="slide" data-thumb="images/gallery/thumbs/9.jpg">
+                                <img src="images/gallery/9.jpg" alt="Image">
+                                <div class="flex-caption slider-caption-bg slider-caption-bg-light">Commercial Construction</div>
+                            </div>
+                            <div class="slide" data-thumb="images/gallery/thumbs/10.jpg">
+                                <img src="images/gallery/10.jpg" alt="Image">
+                                <div class="flex-caption slider-caption-bg slider-caption-bg-light">Repairing Of Roof</div>
+                            </div>
+                            <div class="slide" data-thumb="images/gallery/thumbs/11.jpg">
+                                <img src="images/gallery/11.jpg" alt="Image">
+                                <div class="flex-caption slider-caption-bg slider-caption-bg-light">Home Renovation</div>
+                            </div>
+                            <div class="slide" data-thumb="images/gallery/thumbs/12.jpg">
+                                <img src="images/gallery/12.jpg" alt="Image">
+                                <div class="flex-caption slider-caption-bg slider-caption-bg-light">Office Renovation</div>
+                            </div>
+                        </div>
                     </div>
-                </main>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="section nopadding common-height dark topmargin clearfix">
+        <div class="col-md-4 parallax hidden-xs" style="background: url('images/services/parallax.jpg') center center repeat; background-size: cover;" data-stellar-background-ratio="0.9">
+            <div>&nbsp;</div>
+        </div>
+        <div class="col-md-8">
+            <div class="col-padding">
+
+                <div class="row common-height clearfix">
+                    <div class="col-sm-6 bottommargin">
+                        <div class="feature-box fbox-plain">
+                            <div class="fbox-icon">
+                                <a href="#"><img src="images/icons/building.png" alt="Concrete Developments"></a>
+                            </div>
+                            <h3>Concrete Developments</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem minima, facere distinctio placeat.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 bottommargin">
+                        <div class="feature-box fbox-plain">
+                            <div class="fbox-icon">
+                                <a href="#"><img src="images/icons/bank.png" alt="Finance Assistance"></a>
+                            </div>
+                            <h3>Finance Assistance</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem minima, facere distinctio placeat.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 bottommargin">
+                        <div class="feature-box fbox-plain">
+                            <div class="fbox-icon">
+                                <a href="#"><img src="images/icons/traffic-cone.png" alt="Smart Builders"></a>
+                            </div>
+                            <h3>Smart Builders</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem minima, facere distinctio placeat.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 bottommargin">
+                        <div class="feature-box fbox-plain">
+                            <div class="fbox-icon">
+                                <a href="#"><img src="images/icons/paint-brush.png" alt="Quality Infrastructure"></a>
+                            </div>
+                            <h3>Quality Infrastructure</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem minima, facere distinctio placeat.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="feature-box fbox-plain">
+                            <div class="fbox-icon">
+                                <a href="#"><img src="images/icons/drawer.png" alt="Interiorly Designed"></a>
+                            </div>
+                            <h3>Interiorly Designed</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem minima, facere distinctio placeat.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="feature-box fbox-plain">
+                            <div class="fbox-icon">
+                                <a href="#"><img src="images/icons/paper-money.png" alt="Cost Effective Solutions"></a>
+                            </div>
+                            <h3>Cost Effective Solutions</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem minima, facere distinctio placeat.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="line topmargin-sm"></div>
+    <a href="{{ path('project') }}" class="button button-3d nobottomborder button-full center tright bottommargin-lg t300 font-primary" style="font-size: 26px;">
+        <div class="container clearfix">
+            Cliquez pour voir tout nos travaux réalisé et en cours  <strong>Cliquez ici</strong> <i class="icon-angle-right" style="top:3px;"></i>
+        </div>
+    </a>
+
+    <!-- partenaire
+    ========================== -->
+    <div class="container topmargin-lg cleafix">
+        <div class="divider divider-center divider-border"><i class="icon-diamond"></i></div>
+        <div class="row clearfix">
+            <div class="col-md-12">
+                <div class="heading-block center">
+                    <h2>{{ 'Nos partenaires - clients' }}</h2>
+                    <span>Holisticly incubate enterprise users whereas just in time sources. Rapidiously transition performance based e-business.</span>
+                </div>
+                <ul class="clients-grid grid-6 nobottommargin clearfix">
+                    <li><a href="#"><img src="images/clients/12.jpg" alt="Clients"></a></li>
+                    <li><a href="#"><img src="images/clients/4.jpg" alt="Clients"></a></li>
+                    <li><a href="#"><img src="images/clients/5.jpg" alt="Clients"></a></li>
+                    <li><a href="#"><img src="images/clients/6.jpg" alt="Clients"></a></li>
+                    <li><a href="#"><img src="images/clients/7.jpg" alt="Clients"></a></li>
+                    <li><a href="#"><img src="images/clients/8.jpg" alt="Clients"></a></li>
+                </ul>
             </div>
         </div>
     </div>

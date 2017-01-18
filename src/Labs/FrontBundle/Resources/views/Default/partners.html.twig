@@ -1,30 +1,52 @@
 {% extends '::base.html.twig' %}
 {% block stylesheets %}{% endblock %}
+{% block header %}
+    <!-- Page Title
+    ============================================= -->
+    <section id="page-title" class="">
 
+        <div class="container clearfix">
+            <h1>{{ 'Nos Partenaires' }}</h1>
+            <span>{{ 'Ils nous font confiances' }}</span>
+            <ol class="breadcrumb">
+                <li><a href="{{ path('front_home') }}">{{ 'Accueil' }}</a></li>
+                <li class="active">{{ 'Partenaire - clients' }}</li>
+            </ol>
+        </div>
+
+    </section><!-- #page-title end -->
+{% endblock %}
 {% block body %}
-    <div class="main-title" style="background-color: #f2f2f2">
-        <div class="container">
-            <h1 class="main-title__primary">{{ 'Nos partenaires' }}</h1>
-            <h3 class="main-title__secondary">{{ 'Abidjan golf Resolt'|upper }}</h3>
-        </div>
-    </div>
-    <div class="breadcrumbs ">
-        <div class="container">
-            <span typeof="v:Breadcrumb"><a title="Go to BuildPress." href="{{ path('front_home') }}" class="home">{{ 'Accueil' }}</a></span>
-            <span typeof="v:Breadcrumb"><span>{{ 'partenaires' }}</span></span>
-        </div>
-    </div>
-    <div class="master-container">
-        <div class="container">
-            <div class="row">
-                <main class="col-xs-12" role="main">
-                    <div class="row">
-                        <h1 class="center"> {{ 'contenu en attente'|upper }}</h1>
-                    </div>
-                </main>
+    <div class="container clearfix">
+        <div class="divider divider-center divider-border"><i class="icon-diamond"></i></div>
+
+        <div class="row clearfix">
+
+            <div class="col-md-12">
+                <div class="heading-block center">
+                    <h3>{{ 'Nos partenaires - clients' }}</h3>
+                    <span>{{ 'Nous sommes fiers de conçevoir et construire nos plans et chantier en collaboration avec des Partenaires & Clients Prestigieux' }}</span>
+                </div>
+                <ul class="clients-grid grid-6 nobottommargin clearfix">
+                    {% for partner in partners %}
+                    <li>
+                        <a href="{{ partner.url }}" target="_blank">
+                            <img src="{{ partner.assertPath|imagine_filter('my_thumb_partner') }}" alt="{{ partner.name }}">
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
+
     </div>
+
+    <a href="{{ path('project') }}"  class="button button-3d nobottomborder button-full center tright bottommargin-lg t300 font-primary" style="font-size: 26px;">
+        <div class="container clearfix">
+            Cliquez pour voir tout nos travaux réalisé et en cours  <strong>Cliquez ici</strong> <i class="icon-angle-right" style="top:3px;"></i>
+        </div>
+    </a>
+
 {% endblock %}
 
 {% block javascripts %} {% endblock %}

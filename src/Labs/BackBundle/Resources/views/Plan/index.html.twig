@@ -1,0 +1,77 @@
+{% extends 'LabsUboldBundle::loyout_ubold.html.twig' %}
+{% block title %}{{ 'Plan - Liste | AGR' }}{% endblock %}
+{% block body %}
+    <div class="content">
+        <div class="container">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    {% if app.session.flashBag.has('success') %}
+                        <div class="alert alert-success" role="alert">
+                            {% for msg in app.session.flashBag.get('success') %}
+                                <strong> Succès </strong>{{ msg }}.
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <h4 class="page-title">{{  'Plan liste' }}</h4>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="{{ path('homepage') }}">{{ 'AGR' }}</a>
+                        </li>
+                        <li class="active">
+                            {{ 'Plan Liste' }}
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <!-- end Page Title -->
+            <!-- page content -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card-box">
+                        <h4 class="m-t-0 header-title"><b>{{ 'Plan Liste' }}</b></h4>
+                        <p class="text-muted font-13">
+                            <span class="pull-left">Liste du contenu des plan</span>
+                            <span class="pull-right"> <a href="{{ path('plan_add') }}" class="btn btn-primary btn-block">{{ 'Ajouter un plan' }}</a> </span>
+                        </p>
+                        <div class="clearfix"></div>
+
+                        <table data-toggle="table"
+                               data-show-columns="false"
+                               data-page-list="[5, 10, 20]"
+                               data-page-size="5"
+                               data-pagination="true" data-show-pagination-switch="true" class="table-bordered " class="padding-top-sm">
+                            <thead>
+                            <tr>
+                                <th data-field="tite" data-switchable="false">{{ 'Titre' }}</th>
+                                <th data-field="name">{{ 'date' }}</th>
+                                <th data-field="user-status" class="text-center">Edit</th>
+                                <th data-field="user-del" class="text-center">Del</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            {% for entity in entities %}
+                                <tr>
+                                    <td>{{ entity.title }}</td>
+                                    <td>{{ entity.created|date('Y-m-d') }}</td>
+                                    <td><a class="btn btn-block btn-primary" href="{{ path('plan_edit', {'id' : entity.id }) }}">{{ "Modifier" }}</a></td>
+                                    <td><a class="btn btn-block btn-danger" href="{{ path('plan_delete', {'id' : entity.id }) }}">{{ "Delete" }}</a></td>
+                                </tr>
+                             {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- end page content -->
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/labsubold/assets/plugins/bootstrap-table/js/bootstrap-table.min.js') }}"></script>
+    <script src="{{ asset('bundles/labsubold/assets/pages/jquery.bs-table.js') }}"></script>
+{% endblock %}

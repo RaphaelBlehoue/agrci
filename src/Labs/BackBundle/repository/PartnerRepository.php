@@ -19,4 +19,12 @@ class PartnerRepository extends \Doctrine\ORM\EntityRepository
         $qb->setParameter(':id', $entity);
         return $qb->getQuery()->getOneOrNullResult();
     }
+
+
+    public function findLimit($max)
+    {
+        $qb = $this->createQueryBuilder('p');
+        $qb->setMaxResults($max);
+        return $qb->getQuery()->getResult();
+    }
 }

@@ -35,7 +35,12 @@ class DefaultController extends Controller
      */
     public function ServiceAction()
     {
-        die('lol');
+        $services = $this->getServiceContent();
+        $partners = $this->getPartnersContent();
+        return $this->render('LabsFrontBundle:Default:service.html.twig',[
+            'services' => $services,
+            'partners' => $partners
+        ]);
     }
 
     /**
@@ -51,7 +56,10 @@ class DefaultController extends Controller
      */
     public function ArchitectAction()
     {
-        return $this->render('LabsFrontBundle:Default:architect.html.twig');
+        $plan = $this->getPlanContent();
+        return $this->render('LabsFrontBundle:Default:architect.html.twig',[
+            'plans' => $plan
+        ]);
     }
 
     /**
@@ -83,7 +91,8 @@ class DefaultController extends Controller
      */
     public function PartnersAction()
     {
-        return $this->render('LabsFrontBundle:Default:partners.html.twig');
+        $partners = $this->getPartnersContent();
+        return $this->render('LabsFrontBundle:Default:partners.html.twig',['partners' => $partners]);
     }
 
     /**
@@ -109,6 +118,39 @@ class DefaultController extends Controller
     }
 
     /**
+     * Recuperation de Plan
+     * @return mixed
+     */
+    private function getPlanContent()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $plan = $em->getRepository('LabsBackBundle:Plan')->findLimit(5);
+        return $plan;
+    }
+
+    /**
+     * Recuperation de Service
+     * @return mixed
+     */
+    private function getServiceContent()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entities = $em->getRepository('LabsBackBundle:Service')->findAll();
+        return $entities;
+    }
+
+    /**
+     * Recuperation de partners
+     * @return mixed
+     */
+    private function getPartnersContent()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entities = $em->getRepository('LabsBackBundle:Partner')->findAll();
+        return $entities;
+    }
+
+    /**
      * @return mixed
      */
     private function getProjectContent()
@@ -117,6 +159,7 @@ class DefaultController extends Controller
         $project = $em->getRepository('LabsBackBundle:Project')->findProjectLimit(8);
         return $project;
     }
+
 
     /**
      * @return array|\Labs\BackBundle\Entity\Banner[]

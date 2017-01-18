@@ -1,0 +1,60 @@
+vich_uploader:
+    db_driver: orm # or mongodb or propel or phpcr
+    twig:      true
+    storage:   file_system # or gaufrette or flysystem
+    mappings:
+        banner_image_page:
+            uri_prefix:         /uploads/about
+            upload_destination: "%kernel.root_dir%/../web/uploads/about"
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+            namer:              vich_uploader.namer_uniqid
+
+        banner_image:
+            uri_prefix:         /uploads/banners
+            upload_destination: "%kernel.root_dir%/../web/uploads/banners"
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+            namer:              vich_uploader.namer_uniqid
+
+        plan_image:
+            uri_prefix:         /uploads/plans
+            upload_destination: "%kernel.root_dir%/../web/uploads/plans"
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+            namer:              vich_uploader.namer_uniqid
+
+        service_image:
+            uri_prefix:         /uploads/service
+            upload_destination: "%kernel.root_dir%/../web/uploads/service"
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+            namer:              vich_uploader.namer_uniqid
+
+        team_image:
+            uri_prefix:         /uploads/teams
+            upload_destination: "%kernel.root_dir%/../web/uploads/teams"
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+            namer:              vich_uploader.namer_uniqid
+
+        partner_image:
+            uri_prefix:         /uploads/partners
+            upload_destination: "%kernel.root_dir%/../web/uploads/partners"
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+            namer:              vich_uploader.namer_uniqid
+
+        blog_image:
+            uri_prefix:         /uploads/posts
+            upload_destination: "%kernel.root_dir%/../web/uploads/posts"
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+            namer:              vich_uploader.namer_uniqid

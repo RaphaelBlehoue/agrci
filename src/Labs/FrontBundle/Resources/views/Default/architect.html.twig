@@ -1,0 +1,75 @@
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+{% endblock %}
+{% block slide %}
+    <!-- Page Title
+    ============================================= -->
+    <section id="page-title" class="page-title-parallax page-title-dark page-title-right" style="padding: 250px 0; background-image: url('{{ asset('img/me-parallax.jpg') }}'); background-size: cover; background-position: center center;" data-stellar-background-ratio="0.2">
+
+        <div class="container clearfix">
+            <h1>{{ 'Cesare Stefano Bernardinelli'|upper }}</h1>
+            <span>{{ 'architecte-urbaniste italien' }}</span>
+        </div>
+
+    </section><!-- #page-title end -->
+{% endblock %}
+
+{% block body %}
+    <div class="container clearfix">
+
+        <div class="row clearfix">
+
+            <div class="col-md-6">
+
+                <h3>{{ 'Qui est  Cesare Stefano Bernardinelli'|upper }}</h3>
+
+                <p class="text-justify">
+                    <strong>Cesare Stefano Bernadinelli est  un architecte-urbaniste italien </strong>  avec une expérience exceptionnelle dans le domaine des stations touristiques et de golf. Titulaire d'une maîtrise en architecture et urbanisation de l'Université polytechnique de Milan, c'est en 1983 qu'il a commencé la mise en œuvre d'installations touristiques, la Planification des projets touristiques, la conception de terrains de golf et centres de villégiature, de villages de vacances, des hôtels, des logements sociaux, des centres commerciaux et des aéroports pour des destinations touristiques.  Pendant plus de 30 ans, il a conçu et construit 26 hôtels et villages de vacances, 3 aéroports internationaux pour le tourisme, ainsi que 6 stations de golf Resort en Europe, dans les Caraïbes, en Amérique latine et au Moyen-Orient. (Les logements Golf Resorts sont des complexes touristiques au milieu de la nature et en regard avec l'histoire de la mer).  Ce concept  qui porte sa signature, est arrivé en Côte d'Ivoire à travers la société Abidjan Golf Résort (AGR). En Côte d’Ivoire où il réside en ce moment, avec AGR, entre 2014 et 2016, il a construit de nombreux édifices et conçoit en ce moment, des projets pour faire revivre le tourisme ivoirien.
+                </p>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <h3>{{ 'Son parcours'|upper }}</h3>
+
+                <p class="text-justify">
+                    Après ses études universitaires, il suit des cours à ‘’l’Istituto Statale d’arte’’ (école d’art) à Monza Italie. Et obtient après trois années, un diplôme d’enseignant d’art. Puis, un certificat de fin d’étude en art. En 1983, il travaille aux côtés du professeur Walter Cuneo et de l’architecte Alberto Polacco, à  jacopolo palma 8, Milan. Après sa formation, il décide d’ouvrir sa propre structure à Milan, spécialisée  dans la mise en œuvre des pôles touristiques de planification. Notamment la conception des logements et centres de villégiature, la conception des villages de vacances, centres commerciaux et aéroports touristiques. En 1996, il fut enrôlé (N° 2414)  au registre officiel des évaluateurs lombards. Il participa  à la vérification des logements sociaux de Milan avec l’association (ALER).   En 1987, il  travailla comme consultant technique des bureaux de la cour Monza. Il fut le premier vice-président, puis président d’une association à but non-lucratif dénommée ‘’ Léon Battista Alberti’’, acquis pour les scientifiques et l’art libéral. En 1995, il  coopéra en tant que consultant technique dans le secteur touristique, plus particulièrement pour la compagnie d’investissement NESCO, une multinationale de télécommunication saoudienne.  Dans la même année en 1995, ladite société a investi assez d’argents dans le monde du commerce touristique, plus particulièrement dans les hôtels.  Pendant quatre ans, l’architecte Cesare a occupé le poste de  directeur général  de NESCO France (siège social à paris) et aussi d’Omminasis France. Il a aussi été conseillé du fonds monétaire international (FMI) sur le tourisme au Salvador.  Pour le gouvernement de Salvador, avec l’appui du FMI, i l a conçu la nouvelle station touristique  '' La Union'', sur 150 Km de plages.   En 1997, il fut accrédité HC degré à l’Université International de New York.  30 années travaillant dans le tourisme et expert dans ce domaine. Il fut également militaire et homme politique. Langues parlées: Anglais, Italien,  espagnol, français.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="container clearfix">
+
+        <div class="heading-block center">
+            <h3>{{ 'Quelques Plans realisés' }}</h3>
+            <span>{{ 'Impressionnant travaux que j\'ai réaliser' }}</span>
+        </div>
+
+    </div>
+
+    <div id="portfolio" class="portfolio portfolio-5 portfolio-nomargin portfolio-full portfolio-notitle clearfix" style="margin-bottom: -80px !important;">
+        {% for plan in plans %}
+            <article class="portfolio-item pf-media pf-icons">
+                <div class="portfolio-image">
+                    <a href="">
+                        <img src="{{ plan.assertPath|imagine_filter('my_thumb_plan') }}" alt="Open Imagination">
+                    </a>
+                    <div class="portfolio-overlay">
+                        <a href="{{ plan.assertPath|imagine_filter('my_thumb_plan_full') }}" class="left-icon" data-lightbox="image"><i class="icon-line-plus"></i></a>
+                    </div>
+                </div>
+                <div class="portfolio-desc">
+                    <h3><a href="">{{ plan.title }}</a></h3>
+                </div>
+            </article>
+        {% endfor %}
+
+
+    </div><!-- #portfolio end -->
+
+{% endblock %}

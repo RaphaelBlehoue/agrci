@@ -244,8 +244,5 @@ class About
 
         return $this;
     }
-
-
-
-
+    
 }

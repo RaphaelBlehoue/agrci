@@ -2,6 +2,7 @@
 
 namespace Labs\BackBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -36,13 +37,6 @@ class Project
 
     /**
      * @var string
-     * @Assert\NotNull(message="Entrez les caractérisques du project")
-     * @ORM\Column(name="settings", type="text", length=255)
-     */
-    protected $settings;
-
-    /**
-     * @var string
      * @Assert\NotNull(message="Entrez la description de la rencontre")
      * @ORM\Column(name="content", type="text")
      */
@@ -68,10 +62,24 @@ class Project
      */
     protected $slug;
 
+    /**
+     * @var bool
+     * @ORM\Column(name="online", type="boolean", nullable=true)
+     */
+    protected $online;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="draft", type="boolean", nullable=true)
+     */
+    protected $draft;
+
 
     public function __construct()
     {
         $this->created = new \DateTime('now');
+        $this->medias = new ArrayCollection();
     }
 
     /**
@@ -220,23 +228,53 @@ class Project
         return __DIR__.'/../../../../web/'.$this->getUploadDir();
     }
 
+
     /**
-     * @return string
+     * Set online
+     *
+     * @param boolean $online
+     *
+     * @return Post
      */
-    public function getSettings()
+    public function setOnline($online)
     {
-        return $this->settings;
+        $this->online = $online;
+
+        return $this;
     }
 
     /**
-     * @param string $settings
+     * Get online
      *
-     * @return Project
+     * @return bool
      */
-    public function setSettings($settings)
+    public function getOnline()
     {
-        $this->settings = $settings;
+        return $this->online;
+    }
+
+    /**
+     * Set draft
+     *
+     * @param boolean $draft
+     *
+     * @return Post
+     */
+    public function setDraft($draft)
+    {
+        $this->draft = $draft;
+
         return $this;
+    }
+
+    /**
+     * Get draft
+     *
+     * @return bool
+     */
+    public function getDraft()
+    {
+        return $this->draft;
     }
 
 }

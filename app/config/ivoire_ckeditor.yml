@@ -1,0 +1,8 @@
+ivory_ck_editor:
+    default_config: my_custom_config
+    configs:
+        my_custom_config:
+            language: "%locale%"
+            toolbar: [ [ 'Bold','Italic','Underline' ], [ 'NumberedList','BulletedList','-','Outdent','Indent','-','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ], '/', [ 'Maximize' ] ]
+            uiColor:   "#FCFCFC"
+            forcePasteAsPlainText: true

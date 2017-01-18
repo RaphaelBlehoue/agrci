@@ -56,7 +56,6 @@ class BannerController extends Controller
     public  function bannerEditAction(Banner $banner, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        // On recupere l'id du market
         $banners = $em->getRepository('LabsBackBundle:Banner')->findOne($banner);
         if(null === $banners){
             throw new NotFoundHttpException("L'element d'id ".$banners." n'existe pas");

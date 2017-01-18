@@ -10,7 +10,11 @@ namespace Labs\BackBundle\Repository;
  */
 class AboutRepository extends \Doctrine\ORM\EntityRepository
 {
-
+    /**
+     * @param $entity
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function findOne($entity)
     {
         $qb = $this->createQueryBuilder('a');
@@ -19,6 +23,10 @@ class AboutRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getQuery()->getOneOrNullResult();
     }
 
+    /**
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function findPage()
     {
         $qb = $this->createQueryBuilder('a');

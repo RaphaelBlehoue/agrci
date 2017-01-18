@@ -1,0 +1,48 @@
+#liip_imagine upload crop image
+
+liip_imagine:
+    resolvers:
+       default:
+          web_path: ~
+
+    filter_sets:
+        cache: ~
+        my_thumb_about:
+            quality: 95
+            filters:
+                thumbnail: { size: [555, 312], mode: outbound }
+
+        my_thumb_about_full:
+            quality: 90
+            filters:
+                thumbnail: { size: [1024, 574], mode: outbound }
+
+        my_thumb_project:
+            quality: 90
+            filters:
+                thumbnail: { size: [360, 240], mode: outbound }
+
+        my_thumb_banner:
+            quality: 90
+            filters:
+                thumbnail: { size: [1300, 550], mode: outbound }
+
+        my_thumb_plan:
+            quality: 90
+            filters:
+                thumbnail: { size: [720, 400], mode: outbound }
+
+        my_thumb_plan_full:
+            quality: 90
+            filters:
+                thumbnail: { size: [1200, 1082], mode: outbound }
+
+        my_thumb_service:
+            quality: 90
+            filters:
+                thumbnail: { size: [350, 219], mode: outbound }
+
+        my_thumb_partner:
+            quality: 90
+            filters:
+                thumbnail: { size: [142, 107], mode: outbound }

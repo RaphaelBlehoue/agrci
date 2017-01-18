@@ -1,0 +1,73 @@
+{% extends '::base.html.twig' %}
+{% block stylesheets %}{% endblock %}
+
+{% block header %}
+    <!-- Page Header
+    ============================================= -->
+    <section id="page-title" class="page-title-parallax page-title-dark" style="background: url('{{ asset('img/agr/background.jpg') }}') bottom center / cover; padding: 100px 0;" data-stellar-background-ratio="0.7">
+        <div class="container clearfix">
+            <h1>{{ 'Nos Services' }}</h1>
+            <span>{{ 'AGR est à votre services 7j/7j' }}</span>
+            <ol class="breadcrumb">
+                <li><a href="{{ path('front_home') }}">{{ 'Accueil' }}</a></li>
+                <li class="active">{{ 'Nos services' }}</li>
+            </ol>
+        </div>
+    </section><!-- #page-title end -->
+{% endblock %}
+
+{% block body %}
+    <div class="section header-stick">
+        <h2 class="center nobottommargin ls1">{{ 'AGR vous offre des services de Qualité' }}</h2>
+    </div>
+    <div class="container clearfix">
+        {% for service in services %}
+            <div class="col_one_third {% if loop.index  is divisible by(3)  %} col_last {% endif %}">
+                <div class="feature-box media-box">
+                    <div class="fbox-media">
+                        <img style="border-radius: 2px;" src="{{ service.assertPath|imagine_filter('my_thumb_service') }}" alt="{{ service.title }}">
+                    </div>
+                    <div class="fbox-desc">
+                        <h3>{{ service.title }}<span class="subtitle">{{ service.subtitle }}</span></h3>
+                        <p>
+                            {{ service.content }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% if loop.index is divisible by(3)  %}
+            <div class="clear"></div>
+            {% endif %}
+        {% endfor %}
+
+        <div class="clear"></div>
+        <!-- partenaire
+========================== -->
+        <div class="container topmargin-lg cleafix">
+
+            <div class="divider divider-center divider-border"><i class="icon-diamond"></i></div>
+
+            <div class="row clearfix">
+
+                <div class="col-md-12">
+                    <div class="heading-block center">
+                        <h2>{{ 'Nos partenaires - clients' }}</h2>
+                        <span>{{ 'ILS NOUS FONT CONFIANCE'|capitalize }}</span>
+                    </div>
+                    <ul class="clients-grid grid-6 nobottommargin clearfix">
+                        {% for partner in partners %}
+                            <li><a href="#"><img src="{{ partner.assertPath|imagine_filter('my_thumb_partner') }}" alt="{{ 'partenaire' }}"></a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="line topmargin-sm"></div>
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %} {% endblock %}
