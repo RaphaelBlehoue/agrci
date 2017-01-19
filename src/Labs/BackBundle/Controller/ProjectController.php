@@ -2,20 +2,18 @@
 
 namespace Labs\BackBundle\Controller;
 
-use Labs\BackBundle\Entity\Dossier;
+use Labs\BackBundle\Entity\Media;
 use Labs\BackBundle\Entity\Project;
-use Labs\BackBundle\Form\DossierType;
-use Labs\BackBundle\Form\DossierEditType;
-use Labs\BackBundle\Form\ProjectEditType;
 use Labs\BackBundle\Form\ProjectType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
- * Class DossierController
+ * Class ProjectController
  * @package Labs\BackBundle\Controller
  * @Route("/project")
  */
@@ -33,77 +31,85 @@ class ProjectController extends Controller
         ));
     }
 
-    /**
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @Route("/create", name="project_create")
-     */
-    public function CreateAction(Request $request)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $project = new Project();
-        $form = $this->createForm(ProjectType::class, $project);
-        $form->handleRequest($request);
 
-        if($form->isValid()){
-            $em->persist($project);
-            $em->flush();
-            $this->addFlash('success', 'L\'enregistrement  a été fait avec succès');
-            return $this->redirectToRoute('media_create',['project' => $project->getId()], 302);
-        }
-        return $this->render('LabsBackBundle:Projects:create.html.twig',array(
-            'form' => $form->createView()
-        ));
+    /**
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @Route("/create", name="project_create")
+     * @Method({"GET","POST"})
+     */
+    public function createAction()
+    {
+        $draft = $this->get('draft_create')->DraftCreate();
+        return $this->redirectToRoute('project_edit', ['id' => $draft->getId()]);
     }
 
+
     /**
-     * @param Project $project
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param Project $project
+     * @return JsonResponse|\Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      * @Route("/{id}/edit", name="project_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Project $project, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $projects = $em->getRepository('LabsBackBundle:Dossier')->find($project);
-        if(null === $projects)
+        $datas = $em->getRepository('LabsBackBundle:Project')->find($project);
+        if( null === $datas)
         {
-            throw new NotFoundHttpException('Page Introuvable',null, 404);
+            throw new NotFoundHttpException('Article introuvable');
         }
-        $form = $this->createForm(ProjectEditType::class, $projects);
-        $form->handleRequest($request);
+        // Upload Medias
+        if($request->isXmlHttpRequest()){
+            $response = [];
+            if($this->uploadMedia($request, $datas)){
+                $response = ['results' => 'true'];
+            }else{
+                $response = ['results' => 'false'];
+            }
+            return new JsonResponse($response);
+        }
 
-        if($form->isValid()){
+        $form = $this->createForm(ProjectType::class, $datas);
+        $form->handleRequest($request);
+        if($form->isValid() && $form->isSubmitted()){
+            $datas->setDraft(1);
+            $em->persist($datas);
             $em->flush();
-            $this->addFlash('success', 'La modification a été effectué');
-            return $this->redirectToRoute('project_view', array('id' => $projects->getId()), 302);
+            return $this->redirectToRoute('media_list', ['id' => $datas->getId()]);
         }
-        return $this->render('LabsBackBundle:Projects:edit.html.twig',array(
-            'form' => $form->createView(),
-            'id'   => $projects->getId()
-        ));
+        return $this->render('LabsBackBundle:Projects:edit.html.twig', [
+            'form'      => $form->createView(),
+            'project'   => $datas
+        ]);
     }
 
     /**
      * @param Project $project
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @Route("/{id}/view", name="project_view")
-     * @Method({"GET", "POST"})
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @Route("/{id}/online", name="project_online")
+     * @Method("GET")
      */
-    public function ProjectViewAction( Project $project)
+    public function AddStatusAction(Project $project)
     {
         $em = $this->getDoctrine()->getManager();
-        $projects = $em->getRepository('LabsBackBundle:Project')->getOneAndAssociation($project);
-        if(null === $projects)
+        $entity = $em->getRepository('LabsBackBundle:Project')->find($project);
+        if(null === $entity)
         {
-            throw new NotFoundHttpException('Page Introuvable',null, 404);
+            throw new NotFoundHttpException('Le projet est introuvable', 404);
         }
-        return $this->render('LabsBackBundle:Projects:project_view.html.twig',array(
-            'projects' => $projects
-        ));
+        if($entity->getOnline() === 1){
+            $entity->setOnline(0);
+        }else{
+            $entity->setOnline(1);
+        }
+        $em->flush();
+        return $this->redirectToRoute('project_index');
     }
 
+
+
+    
     /**
      * @param Project $project
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -119,8 +125,31 @@ class ProjectController extends Controller
         else
             $em->remove($projects);
         $em->flush();
-        $this->addFlash('success', 'La suppression a été fait avec succès');
         return $this->redirectToRoute('project_index', array(), 302);
+    }
+
+    /**
+     * @param Request $request
+     * @param Project $project
+     * @return bool
+     */
+    private function uploadMedia(Request $request, Project $project)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $media = new Media();
+        $projects = $em->getRepository('LabsBackBundle:Project')->find($project);
+        /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+        $file = $request->files->get('file');
+        $fileName = $projects->getSlug().'_'.md5(uniqid()).'.'.$file->guessExtension();
+        $file->move(
+            $this->container->getParameter('gallery_directory'),
+            $fileName
+        );
+        $media->setUrl($fileName);
+        $media->setProject($projects);
+        $em->persist($media);
+        $em->flush($media);
+        return true;
     }
     
     

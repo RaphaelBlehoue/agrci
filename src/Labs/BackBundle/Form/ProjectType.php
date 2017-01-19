@@ -21,9 +21,6 @@ class ProjectType extends AbstractType
                 'label' => false,
                 'attr' => array('class' => 'form-control')
             ))
-            ->add('settings', CKEditorType::class, array(
-                'label' => false
-            ))
             ->add('content', CKEditorType::class, array(
                 'label' => false
             ))

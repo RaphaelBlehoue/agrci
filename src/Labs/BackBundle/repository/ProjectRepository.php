@@ -39,4 +39,17 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         }
         return $qb->getQuery()->getResult();
     }
+
+    /**
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function getDraft()
+    {
+        $qb = $this->createQueryBuilder('p');
+        $qb->where(
+            $qb->expr()->eq('p.draft', 0)
+        );
+        return $qb->getQuery()->getOneOrNullResult();
+    }
 }

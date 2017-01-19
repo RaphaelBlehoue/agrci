@@ -1,4 +1,16 @@
 {% extends 'LabsUboldBundle::loyout_ubold.html.twig' %}
+{% block stylesheets %}
+    <style type="text/css">
+          .dz-default{
+              padding-top: 50px;
+          }
+          .uploader span {
+              display: block;
+              font-size: 2rem;
+              text-align: center;
+          }
+    </style>
+{% endblock %}
 {% block title %}{{ 'About - Page | AGR' }}{% endblock %}
 {% block body %}
     <div class="content">
@@ -34,35 +46,32 @@
                     <div class="card-box">
                         <h4 class="m-t-0 header-title"><b>{{ 'Formulaire de modification de la page project' }}</b></h4>
                         <div class="row">
-                            <div class="col-md-8 col-md-offset-2">
-                                {{ form_start(form, {'role': 'form', 'action': path('project_edit', {'id' : id}), 'attr': {'class': 'form-horizontal'}}) }}
+                            <div class="col-md-12">
+                                {{ form_start(form, {'role': 'form', 'action': path('project_edit', {'id' : project.id }), 'attr': {'class': 'form-horizontal'}}) }}
                                 <div class="form-group">
-                                    <label class="col-md-2 control-label">{{ 'Titre du project' }}</label>
-                                    <div class="col-md-10">
+                                    <div class="col-md-5">
+                                        <label class="control-label">{{ 'Titre du project' }}</label>
                                         {{ form_row(form.name) }}
                                         {{ form_errors(form.name) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-2 control-label">{{ 'caractéristique du project' }}</label>
-                                    <div class="col-md-10">
-                                        {{ form_row(form.settings) }}
-                                        {{ form_errors(form.settings) }}
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-2 control-label">{{ 'Contenu du project' }}</label>
-                                    <div class="col-md-10">
+                                    <div class="col-md-12">
+                                        <label class="control-label">{{ 'Contenu du project' }}</label>
                                         {{ form_row(form.content) }}
                                         {{ form_errors(form.content) }}
                                     </div>
                                 </div>
 
+                                <div class="form-group uploader">
+                                    <p class="text-semibold">Importez les images ou photos du projet</p>
+                                    <div action="{{ path('project_edit', {'id' : project.id }) }}" class="dropzone" id="dropzone-upload"></div>
+                                </div>
+
                                 <div class="form-group">
-                                    <div class="col-md-8 col-md-offset-2">
-                                        <button type="submit" class="btn btn-danger">{{ 'Modifier le project' }}</button>
+                                    <div class="col-md-12 text-right">
+                                        <button type="submit" class="btn btn-danger btn-rounded waves-effect waves-light">{{ 'Enregistrer' }}</button>
                                     </div>
                                 </div>
                                 {{ form_end(form) }}
@@ -76,4 +85,8 @@
     </div>
 {% endblock %}
 
-{% block javascripts %}{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/dropzone/dropzone.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/dropzone/main.js') }}"></script>
+{% endblock %}

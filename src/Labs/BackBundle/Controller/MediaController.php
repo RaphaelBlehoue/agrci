@@ -4,12 +4,14 @@ namespace Labs\BackBundle\Controller;
 
 use Labs\BackBundle\Entity\Media;
 use Labs\BackBundle\Entity\Project;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 
 /**
  * Class MediaController
@@ -19,69 +21,50 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class MediaController extends Controller
 {
     /**
-     * @Route("/", name="media_index")
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $medias = $em->getRepository('LabsBackBundle:Media')->findAll();
-        return $this->render('LabsBackBundle:Medias:index.html.twig', array(
-            'medias' => $medias
-        ));
-    }
-    
-    /**
-     * @param Request $request
      * @param Project $project
-     * @return JsonResponse|\Symfony\Component\HttpFoundation\Response
-     * @Route("/add/{project}/upload", name="media_create")
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/{id}/list", name="media_list")
+     * @Method("GET")
+     * @Template()
+     * @ParamConverter("project", class="LabsBackBundle:Project")
      */
-    public function AddAction(Request $request, Project $project)
+    public function ChoiceMediaInFrontAction(Project $project)
     {
-
         $em = $this->getDoctrine()->getManager();
-        $media = new Media();
-        $projects = $em->getRepository('LabsBackBundle:Project')->getOne($project);
-
-        if($request->isXmlHttpRequest()){
-            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
-            $file = $request->files->get('file');
-            $fileName = $project->getSlug().'_'.md5(uniqid()).'.'.$file->guessExtension();
-            $file->move(
-                $this->container->getParameter('gallery_directory'),
-                $fileName
-            );
-            $media->setUrl($fileName);
-            $media->setProject($projects);
-            $em->persist($media);
-            $em->flush($media);
-            $response = ['success' => 'true'];
-            return new JsonResponse($response);
+        $datas = $em->getRepository('LabsBackBundle:Project')->find($project);
+        if(!$datas)
+        {
+            throw new NotFoundHttpException('l\'article ou les medias n\'existe pas');
         }
-
-        return $this->render(
-            'LabsBackBundle:Medias:upload_project.html.twig', array(
-            'projects' => $projects
-        ));
+        $medias = $em->getRepository('LabsBackBundle:Media')->findForPostMedia($project);
+        return $this->render('LabsBackBundle:Medias:list.html.twig', [
+            'article' => $project,
+            'medias' => $medias
+        ]);
     }
-    
 
     /**
      * @param Media $media
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     * @Route("/{id}/delete_project/{project}", name="media_delete_project")
+     * @Route("/in/front/{id}", name="add_media_front")
      * @Method("GET")
      */
-    public function deleteMediaProjectAction(Media $media, $project)
+    public function AddMediaInFrontAction(Media $media)
     {
         $em = $this->getDoctrine()->getManager();
-        $projects = $em->getRepository('LabsBackBundle:Project')->getOne($project);
-        if(null === $media)
-            throw new NotFoundHttpException('Page Introuvable',null, 404);
-        else
-            $em->remove($media);
+        $medias = $em->getRepository('LabsBackBundle:Media')->findOneMedia($media);
+        if(!$media){
+            throw $this->createNotFoundException('Le media photo ou image n\'existe pas');
+        }
+        //Rechercher tous les medias qui ont la même clé etrangère sauf celle de l'id
+        $oldMedia = $em->getRepository('LabsBackBundle:Media')->findMediaIsNotMedia($medias->getId(), $medias->getProject());
+        //Mettre la valeur de toute les valeurs trouvée a active = 0
+        foreach ($oldMedia as $m){
+            $m->setActived(0);
+        }
+        //Ensuite mettre le medias trouve en question a active = 1
+        $medias->setActived(1);
         $em->flush();
-        $this->addFlash('success', 'La suppression a été fait avec succès');
-        return $this->redirectToRoute('dossier_view', ['id' => $projects->getId()], 302);
+        return $this->redirectToRoute('project_index');
     }
 }

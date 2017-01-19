@@ -14,13 +14,13 @@
                         </div>
                     {% endif %}
 
-                    <h4 class="page-title">{{  'Page About' }}</h4>
+                    <h4 class="page-title">{{  'Page Projet' }}</h4>
                     <ol class="breadcrumb">
                         <li>
                             <a href="{{ path('homepage') }}">{{ 'AGR' }}</a>
                         </li>
                         <li class="active">
-                            {{ 'Page About' }}
+                            {{ 'Page projet' }}
                         </li>
                     </ol>
                 </div>
@@ -30,10 +30,10 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card-box">
-                        <h4 class="m-t-0 header-title"><b>{{ 'Page About' }}</b></h4>
+                        <h4 class="m-t-0 header-title"><b>{{ 'Page Project' }}</b></h4>
                         <p class="text-muted font-13">
                             <span class="pull-left">Liste du contenu des project</span>
-                            <span class="pull-right"> <a href="{{ path('project_create') }}" class="btn btn-primary btn-block">{{ 'Créer page project' }}</a> </span>
+                            <span class="pull-right"> <a href="{{ path('project_create') }}" class="btn btn-primary btn-block">{{ 'Ajouter project' }}</a> </span>
                         </p>
                         <div class="clearfix"></div>
 
@@ -45,9 +45,10 @@
                             <thead>
                             <tr>
                                 <th data-field="tite" data-switchable="false">{{ 'Titre' }}</th>
-                                <th data-field="subtite" data-switchable="false">{{ 'Sous titre' }}</th>
+                                <th data-field="Status" data-switchable="false">{{ 'Status' }}</th>
                                 <th data-field="name">{{ 'date' }}</th>
-                                <th data-field="user-status" class="text-center">Edit</th>
+                                <th data-field="user-status" class="text-center">Status</th>
+                                <th data-field="user-edit" class="text-center">Edit</th>
                                 <th data-field="user-del" class="text-center">Del</th>
                             </tr>
                             </thead>
@@ -55,9 +56,12 @@
                             <tbody>
                             {% for project in projects %}
                                 <tr>
-                                    <td><a href="{{ path('project_view', {'id' : project.id}) }}">{{ project.name }}</a></td>
-                                    <td>{{ project.slug }}</td>
+                                    <td>{{ project.name }}</td>
+                                    <td>
+                                        <span class="label {{ (project.online == 1) ? 'label-success' : 'label-danger' }}">{{ (project.online == 1) ? 'En Ligne' : 'Hors Ligne' }}</span>
+                                    </td>
                                     <td>{{ project.created|date('Y-m-d') }}</td>
+                                    <td><a class="btn btn-block {{ (project.online == 1) ? 'btn-success' : 'btn-warning' }}" href="{{ path('project_online', {'id' : project.id }) }}">{{ (project.online == 1) ? 'Mettre Hors Ligne' : 'Mettre en ligne' }}</a></td>
                                     <td><a class="btn btn-block btn-primary" href="{{ path('project_edit', {'id' : project.id }) }}">{{ "Modifier" }}</a></td>
                                     <td><a class="btn btn-block btn-danger" href="{{ path('project_delete', {'id' : project.id }) }}">{{ "Delete" }}</a></td>
                                 </tr>

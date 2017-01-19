@@ -30,15 +30,15 @@ class Project
     /**
      * @var string
      *
-     * @Assert\NotNull(message="Entrez le nom du dossier")
-     * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\NotNull(message="Entrez le nom du projet")
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
     protected $name;
 
     /**
      * @var string
-     * @Assert\NotNull(message="Entrez la description de la rencontre")
-     * @ORM\Column(name="content", type="text")
+     * @Assert\NotNull(message="Entrez la description du projet")
+     * @ORM\Column(name="content", type="text", nullable=true)
      */
     protected $content;
 
