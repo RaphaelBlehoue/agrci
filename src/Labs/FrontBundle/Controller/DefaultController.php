@@ -3,6 +3,11 @@
 namespace Labs\FrontBundle\Controller;
 
 use Labs\BackBundle\Entity\Project;
+use Labs\BackBundle\Entity\About;
+use Labs\BackBundle\Entity\Service;
+use Labs\BackBundle\Entity\Banner;
+use Labs\BackBundle\Entity\Plan;
+use Labs\BackBundle\Entity\Partner;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;

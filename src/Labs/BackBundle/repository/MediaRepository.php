@@ -2,7 +2,9 @@
 
 namespace Labs\BackBundle\Repository;
 
-class MediaRepository extends \Doctrine\ORM\EntityRepository
+use Doctrine\ORM\EntityRepository;
+
+class MediaRepository extends EntityRepository
 {
 
     /**
