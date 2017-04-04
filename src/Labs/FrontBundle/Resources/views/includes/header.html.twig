@@ -5,8 +5,8 @@
         <!-- Logo
         ============================================= -->
         <div id="logo">
-            <a href="{{ path('homepage') }}" class="standard-logo"><img src="{{ asset('img/logo.png')  }}" alt="AGR LOGO"></a>
-            <a href="{{ path('homepage') }}" class="retina-logo"><img src="{{ asset('img/logo@2x.png') }}" alt="AGR LOGO"></a>
+            <a href="{{ path('front_home') }}" class="standard-logo"><img src="{{ asset('img/logo.png')  }}" alt="AGR LOGO"></a>
+            <a href="{{ path('front_home') }}" class="retina-logo"><img src="{{ asset('img/logo@2x.png') }}" alt="AGR LOGO"></a>
         </div><!-- #logo end -->
 
         <ul class="header-extras">
@@ -21,7 +21,7 @@
                 <i class="i-plain icon-line2-envelope nomargin"></i>
                 <div class="he-text">
                     {{ 'Adresse Email' }}
-                    <span>info@canvas.com</span>
+                    <span>info@agrci.com</span>
                 </div>
             </li>
             <li>
@@ -42,9 +42,7 @@
         <nav id="primary-menu" class="with-arrows style-2 center">
 
             <div class="container clearfix">
-
                 <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
-
                 <ul>
                     <li><a href="{{ path('front_home') }}"><div>{{ 'Accueil' }}</div></a></li>
                     <li><a href="#"><div>{{ 'Notre Entreprise' }}</div></a>
@@ -54,20 +52,11 @@
                         </ul>
                     </li>
                     <li><a href="{{ path('architect') }}"><div>{{ 'Notre Architecte' }}</div></a></li>
-                    <li><a href="{{ path('project') }}"><div>{{ 'Projets' }}</div></a>
-                        <ul>
-                            <li><a href="#"><div>{{ 'Projets en cours' }}</div></a></li>
-                            <li><a href="#"><div>{{ 'Projets réalisés' }}</div></a></li>
-                        </ul>
-                    </li>
+                    <li><a href="{{ path('project') }}"><div>{{ 'Projets' }}</div></a></li>
                     <li><a href="{{ path('partners') }}"><div>{{ 'Partenaires' }}</div></a></li>
-                    <li><a href="{{ path('blog') }}"><div>{{ 'Blog' }}</div></a></li>
                     <li><a href="{{ path('contact') }}"><div>{{ 'Nous Contacter' }}</div></a></li>
                 </ul>
             </div>
-
         </nav><!-- #primary-menu end -->
-
     </div>
-
 </header><!-- #header end -->

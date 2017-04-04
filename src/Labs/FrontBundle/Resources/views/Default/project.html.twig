@@ -1,30 +1,57 @@
 {% extends '::base.html.twig' %}
 {% block stylesheets %}{% endblock %}
+{% block Title %}{{ 'AGR - Nos projets réalisé et en cours'|upper }}{% endblock %}
+{% block header %}
+    <!-- Page Title
+    ============================================= -->
+    <section id="page-title" class="">
+        <div class="container clearfix">
+            <h1>{{ 'Nos projets' }}</h1>
+            <span>{{ 'Tout nos projets Réalisés' }}</span>
+            <ol class="breadcrumb">
+                <li><a href="{{ path('front_home') }}">{{ 'Accueil' }}</a></li>
+                <li class="active">{{ 'Projets' }}</li>
+            </ol>
+        </div>
+    </section><!-- #page-title end -->
+{% endblock %}
 
 {% block body %}
-    <div class="main-title" style="background-color: #f2f2f2">
-        <div class="container">
-            <h1 class="main-title__primary">{{ 'Notre projet' }}</h1>
-            <h3 class="main-title__secondary">{{ 'Abidjan golf Resolt'|upper }}</h3>
-        </div>
-    </div>
-    <div class="breadcrumbs ">
-        <div class="container">
-            <span typeof="v:Breadcrumb"><a title="Go to BuildPress." href="{{ path('front_home') }}" class="home">{{ 'Accueil' }}</a></span>
-            <span typeof="v:Breadcrumb"><span>{{ 'Projet' }}</span></span>
-        </div>
-    </div>
-    <div class="master-container">
-        <div class="container">
-            <div class="row">
-                <main class="col-xs-12" role="main">
-                    <div class="row">
-                        <h1 class="center"> {{ 'contenu en attente'|upper }}</h1>
+    <div class="container clearfix">
+
+        <h2 class="center ls1 bottommargin">{{ 'Tout les projets réalisés par l\'entreprise' }}</h2>
+
+        <div id="portfolio" class="portfolio portfolio-3 grid-container clearfix">
+            {% for project in projects %}
+                <article class="portfolio-item pf-media pf-icons">
+                    <div class="portfolio-image">
+                        {% for media in project.medias %}
+                            <img src="{{ media.assertPath|imagine_filter('thumb_project_min') }}" alt="{{ project.name }}">
+                        {% endfor %}
+                        <div class="portfolio-overlay">
+                            <a href="{{ path('project_view', {'id': project.id, 'slug':project.slug}) }}" class="center-icon"><i class="icon-line-ellipsis"></i></a>
+                        </div>
                     </div>
-                </main>
-            </div>
+                    <div class="portfolio-desc">
+                        <h3><a href="{{ path('project_view', {'id': project.id, 'slug':project.slug}) }}">{{ project.name }}</a></h3>
+                        <span>{{ project.lieu }}</span>
+                    </div>
+                </article>
+            {% endfor %}
         </div>
+        <div class="center">
+            {{ knp_pagination_render(projects) }}
+        </div>
+
     </div>
+
+    <div class="line topmargin-sm"></div>
+    <a href="{{ path('contact') }}" class="button button-3d nobottomborder button-full center tright bottommargin-lg t300 font-primary" style="font-size: 26px;">
+        <div class="container clearfix">
+            Vous etes satisfait de nos réalisations alors pour nous contactez <strong>Cliquez ici</strong> <i class="icon-angle-right" style="top:3px;"></i>
+        </div>
+    </a>
+
 {% endblock %}
 
 {% block javascripts %} {% endblock %}

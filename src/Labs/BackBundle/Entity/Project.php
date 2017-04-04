@@ -37,6 +37,14 @@ class Project
 
     /**
      * @var string
+     *
+     * @Assert\NotNull(message="Entrez le lieu du projet")
+     * @ORM\Column(name="lieu", type="string", length=255, nullable=true)
+     */
+    protected $lieu;
+
+    /**
+     * @var string
      * @Assert\NotNull(message="Entrez la description du projet")
      * @ORM\Column(name="content", type="text", nullable=true)
      */
@@ -234,7 +242,7 @@ class Project
      *
      * @param boolean $online
      *
-     * @return Post
+     * @return Project
      */
     public function setOnline($online)
     {
@@ -258,7 +266,7 @@ class Project
      *
      * @param boolean $draft
      *
-     * @return Post
+     * @return Project
      */
     public function setDraft($draft)
     {
@@ -276,5 +284,29 @@ class Project
     {
         return $this->draft;
     }
+
+    /**
+     * @return string
+     */
+    public function getLieu()
+    {
+        return $this->lieu;
+    }
+
+    /**
+     * set lieu
+     * 
+     * @param string $lieu
+     * 
+     * @return Project
+     */
+    public function setLieu($lieu)
+    {
+        $this->lieu = $lieu;
+        
+        return $this;
+    }
+    
+    
 
 }

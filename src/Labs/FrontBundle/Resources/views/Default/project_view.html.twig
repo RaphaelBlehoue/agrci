@@ -1,0 +1,93 @@
+{% extends '::base.html.twig' %}
+{% block stylesheets %}{% endblock %}
+{% block Title %}{{ 'AGR - Nos projets réalisé et en cours'|upper }}{% endblock %}
+{% block header %}
+    <!-- Page Title
+    ============================================= -->
+    <section id="page-title" class="">
+        <div class="container clearfix">
+            <h1>{{ 'Nos projets' }}</h1>
+            <span> Projets : {{ project.name }}</span>
+            <ol class="breadcrumb">
+                <li><a href="{{ path('front_home') }}">{{ 'Accueil' }}</a></li>
+                <li class="active">{{ 'Projets' }}</li>
+            </ol>
+        </div>
+    </section><!-- #page-title end -->
+{% endblock %}
+{% block body %}
+    <div class="container clearfix">
+
+        <div class="postcontent nobottommargin">
+
+            <!-- Portfolio Single Content
+            ============================================= -->
+            <div class="col_three_fourth portfolio-single-content nobottommargin">
+
+                <!-- Portfolio Single - Description
+                ============================================= -->
+                <div class="fancy-title title-dotted-border">
+                    <h2>Projet Information:</h2>
+                </div>
+                <strong>{{ project.name }}</strong>
+                <ul class="portfolio-meta nobottommargin">
+                    <li><span><i class="icon-globe"></i>{{ project.lieu }}</li>
+                </ul>
+                {{ project.content|raw }}
+
+            </div><!-- .portfolio-single-content end -->
+
+            <div class="col_one_fourth col_last nobottommargin">
+                <!-- Portfolio Single - Share
+                ============================================= -->
+                <div class="si-share noborder clearfix">
+                    <span>Partager sur les reseaux sociaux:</span>
+                    <div>
+                        <a href="#" class="social-icon si-borderless si-facebook">
+                            <i class="icon-facebook"></i>
+                            <i class="icon-facebook"></i>
+                        </a>
+                        <a href="#" class="social-icon si-borderless si-twitter">
+                            <i class="icon-twitter"></i>
+                            <i class="icon-twitter"></i>
+                        </a>
+                        <a href="#" class="social-icon si-borderless si-pinterest">
+                            <i class="icon-pinterest"></i>
+                            <i class="icon-pinterest"></i>
+                        </a>
+                        <a href="#" class="social-icon si-borderless si-gplus">
+                            <i class="icon-gplus"></i>
+                            <i class="icon-gplus"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Portfolio Single - Share End -->
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="sidebar col_last nobottommargin">&nbsp;</div>
+        <div class="divider"><i class="icon-circle"></i></div>
+        <div class="col_full clearfix">
+
+            <div class="col_full clearfix">
+
+                <h3>Photos du site :</h3>
+
+                <div class="masonry-thumbs col-5" data-big="1" data-lightbox="gallery">
+                    {% for media in project.medias %}
+                        <a href="{{ media.assertPath|imagine_filter('image_profolio_full') }}" data-lightbox="gallery-item">
+                            <img class="image_fade" src="{{ media.assertPath|imagine_filter('thumb_project_full') }}" alt="{{ project.name }}">
+                        </a>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+        <div class="line topmargin-sm"></div>
+        <a href="{{ path('contact') }}" class="button button-3d nobottomborder button-full center tright bottommargin-lg t300 font-primary" style="font-size: 26px;">
+            <div class="container clearfix">
+                Vous etes satisfait de nos réalisations alors pour nous contactez <strong>Cliquez ici</strong> <i class="icon-angle-right" style="top:3px;"></i>
+            </div>
+        </a>
+    </div>
+{% endblock %}

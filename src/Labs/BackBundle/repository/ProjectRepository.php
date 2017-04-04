@@ -33,6 +33,12 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
     public function findProjectLimit($num = null)
     {
         $qb = $this->createQueryBuilder('p');
+        $qb->leftJoin('p.medias','m');
+        $qb->addSelect('m');
+        $qb->where(
+            $qb->expr()->eq('p.online', 1),
+            $qb->expr()->eq('m.actived', 1)
+        );
         $qb->orderBy('p.created', 'DESC');
         if( null !== $num ){
             $qb->setMaxResults($num);
@@ -51,5 +57,20 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             $qb->expr()->eq('p.draft', 0)
         );
         return $qb->getQuery()->getOneOrNullResult();
+    }
+
+    /**
+     * @return array
+     */
+    public function findAllProjectWithMediasActived()
+    {
+        $qb = $this->createQueryBuilder('p');
+        $qb->leftJoin('p.medias','m');
+        $qb->addSelect('m');
+        $qb->where(
+            $qb->expr()->eq('p.online', 1),
+            $qb->expr()->eq('m.actived', 1)
+        );
+        return $qb->getQuery()->getResult();
     }
 }

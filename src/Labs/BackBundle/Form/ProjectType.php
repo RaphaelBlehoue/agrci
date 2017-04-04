@@ -21,6 +21,10 @@ class ProjectType extends AbstractType
                 'label' => false,
                 'attr' => array('class' => 'form-control')
             ))
+            ->add('lieu', TextType::class, array(
+                'label' => false,
+                'attr' => array('class' => 'form-control')
+            ))
             ->add('content', CKEditorType::class, array(
                 'label' => false
             ))

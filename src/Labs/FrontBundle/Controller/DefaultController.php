@@ -2,8 +2,11 @@
 
 namespace Labs\FrontBundle\Controller;
 
+use Labs\BackBundle\Entity\Project;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
@@ -14,9 +17,13 @@ class DefaultController extends Controller
     {
         $about = $this->getAboutContent();
         $projects = $this->getProjectContent();
+        $services = $this->getServiceContent();
+        $partners = $this->getPartnersContent();
         return $this->render('LabsFrontBundle:Default:index.html.twig', [
             'about' => $about,
             'projects' => $projects,
+            'services' => $services,
+            'partners' => $partners
         ]);
     }
 
@@ -26,8 +33,12 @@ class DefaultController extends Controller
     public function AboutAction()
     {
         $about = $this->getAboutContent();
+        $services = $this->getServiceContent();
+        $partners = $this->getPartnersContent();
         return $this->render('LabsFrontBundle:Default:about.html.twig', [
-            'about' => $about
+            'about' => $about,
+            'services' => $services,
+            'partners' => $partners
         ]);
     }
     /**
@@ -63,11 +74,36 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/notre_project", name="project")
+     * @param Request $request
+     * @param $page
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/notre_project/page-{page}", name="project", requirements={"id" = "\d+"}, defaults={"page" = 1})
      */
-    public function ProjectAction()
+    public function ProjectAction(Request $request, $page)
     {
-        return $this->render('LabsFrontBundle:Default:project.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $findproject = $em->getRepository('LabsBackBundle:Project')->findAllProjectWithMediasActived();
+        $projects  = $this->get('knp_paginator')->paginate(
+            $findproject,
+            $request->query->getInt('page', $page), 6);
+         return $this->render('LabsFrontBundle:Default:project.html.twig',['projects' => $projects]);
+    }
+
+    /**
+     * @param Project $project
+     * @param $slug
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/project/{id}/view/{slug}", name="project_view")
+     * @Method("GET")
+     */
+    public function viewProjectAction(Project $project, $slug)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $project = $em->getRepository('LabsBackBundle:Project')->findOneBy(array(
+            'id' => $project,
+            'slug' => $slug
+        ));
+        return $this->render('LabsFrontBundle:Default:project_view.html.twig',['project' => $project]);
     }
 
     /**
@@ -151,7 +187,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @return mixed
+     * @return array
      */
     private function getProjectContent()
     {
@@ -159,6 +195,7 @@ class DefaultController extends Controller
         $project = $em->getRepository('LabsBackBundle:Project')->findProjectLimit(8);
         return $project;
     }
+    
 
 
     /**

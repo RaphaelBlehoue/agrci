@@ -42,6 +42,24 @@ liip_imagine:
             filters:
                 thumbnail: { size: [350, 219], mode: outbound }
 
+        my_thumb_small_service:
+            quality: 90
+            filters:
+                thumbnail: { size: [120, 70], mode: outbound }
+                background: { size: [120, 70], position: center, color: '#EEF1F5' }
+
+        my_thumb_small_icon:
+            quality: 90
+            filters:
+                thumbnail: { size: [64, 64], mode: outbound }
+                background: { size: [64, 64], position: center, color: '#EEF1F5' }
+
+        my_thumb_small_full:
+            quality: 90
+            filters:
+                thumbnail: { size: [850, 550], mode: outbound }
+                background: { size: [850, 550], position: center, color: '#EEF1F5' }
+
         my_thumb_partner:
             quality: 90
             filters:
@@ -52,3 +70,26 @@ liip_imagine:
             filters:
                 thumbnail: { size: [218, 218], mode: outbound }
                 background: { size: [220, 220], position: center, color: '#EEF1F5' }
+
+        thumb_project_min:
+            quality: 95
+            filters:
+                thumbnail: { size: [370, 278], mode: outbound }
+                background: { size: [370, 278], position: center, color: '#EEF1F5' }
+
+        thumb_project_min_home:
+            quality: 95
+            filters:
+                thumbnail: { size: [321, 241], mode: outbound }
+                background: { size: [321, 241], position: center, color: '#EEF1F5' }
+
+        thumb_project_full:
+            quality: 95
+            filters:
+                thumbnail: { size: [400, 300], mode: outbound }
+                background: { size: [400, 300], position: center, color: '#EEF1F5' }
+
+        image_profolio_full:
+            quality: 100
+            filters:
+                relative_resize: { widen: 980 }

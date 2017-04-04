@@ -44,9 +44,10 @@
                                data-pagination="true" data-show-pagination-switch="true" class="table-bordered " class="padding-top-sm">
                             <thead>
                             <tr>
-                                <th data-field="tite" data-switchable="false">{{ 'Titre' }}</th>
+                                <th data-field="title" data-switchable="false">{{ 'Titre' }}</th>
+                                <th data-field="Lieu" data-switchable="false">{{ 'Lieu' }}</th>
                                 <th data-field="Status" data-switchable="false">{{ 'Status' }}</th>
-                                <th data-field="name">{{ 'date' }}</th>
+                                <th data-field="date">{{ 'date' }}</th>
                                 <th data-field="user-status" class="text-center">Status</th>
                                 <th data-field="user-edit" class="text-center">Edit</th>
                                 <th data-field="user-del" class="text-center">Del</th>
@@ -57,6 +58,7 @@
                             {% for project in projects %}
                                 <tr>
                                     <td>{{ project.name }}</td>
+                                    <td>{{ project.lieu }}</td>
                                     <td>
                                         <span class="label {{ (project.online == 1) ? 'label-success' : 'label-danger' }}">{{ (project.online == 1) ? 'En Ligne' : 'Hors Ligne' }}</span>
                                     </td>
