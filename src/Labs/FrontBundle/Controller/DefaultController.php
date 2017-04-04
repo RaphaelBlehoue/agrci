@@ -146,7 +146,7 @@ class DefaultController extends Controller
      * Recuperation de About
      * @return mixed
      */
-    private function getAboutContent()
+    protected function getAboutContent()
     {
         $em = $this->getDoctrine()->getManager();
         $about = $em->getRepository('LabsBackBundle:About')->findPage();
@@ -157,7 +157,7 @@ class DefaultController extends Controller
      * Recuperation de Plan
      * @return mixed
      */
-    private function getPlanContent()
+    protected function getPlanContent()
     {
         $em = $this->getDoctrine()->getManager();
         $plan = $em->getRepository('LabsBackBundle:Plan')->findLimit(5);
@@ -168,7 +168,7 @@ class DefaultController extends Controller
      * Recuperation de Service
      * @return mixed
      */
-    private function getServiceContent()
+    protected function getServiceContent()
     {
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository('LabsBackBundle:Service')->findAll();
@@ -179,7 +179,7 @@ class DefaultController extends Controller
      * Recuperation de partners
      * @return mixed
      */
-    private function getPartnersContent()
+    protected function getPartnersContent()
     {
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository('LabsBackBundle:Partner')->findAll();
@@ -189,7 +189,7 @@ class DefaultController extends Controller
     /**
      * @return array
      */
-    private function getProjectContent()
+    protected function getProjectContent()
     {
         $em = $this->getDoctrine()->getManager();
         $project = $em->getRepository('LabsBackBundle:Project')->findProjectLimit(8);
@@ -201,7 +201,7 @@ class DefaultController extends Controller
     /**
      * @return array|\Labs\BackBundle\Entity\Banner[]
      */
-    private function getSlideContent()
+    protected function getSlideContent()
     {
         $em = $this->getDoctrine()->getManager();
         $slides = $em->getRepository('LabsBackBundle:Banner')->findAll();
